@@ -18,7 +18,7 @@ X
 ,src/main/java/me/sungbin/ch02/ScannerEx.java,f/5/f56425f0c4a63a4b00e370ae30fa8a21c5cdf752
 Y
 )src/main/java/me/sungbin/ch02/VarEx1.java,5/8/58c57b08ebb96b54072a1d92c7b0c91bf13e00e5
-W
-'src/main/java/me/sungbin/ch02/README.md,e/2/e220d35dbbcf4415ed0fb7f288d6894b3e95896d
 Y
 )src/main/java/me/sungbin/ch02/VarEx2.java,9/4/94bd63cac57526da9948eaec4238f3e5a5824612
+`
+0src/main/java/me/sungbin/ch02/SpecialCharEx.java,d/a/da601612d87d6ae0e86a9a9f8cbe9692ef9c1401

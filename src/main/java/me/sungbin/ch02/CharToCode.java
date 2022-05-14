@@ -23,6 +23,6 @@ public class CharToCode {
         System.out.printf("%c=%d(%X) %n", hch, code, code);
 
         char tch = '&';
-        System.out.printf("%c=%d(%X) %n", tch, code, code);
+        System.out.printf("%c=%d(%X) %n", tch, (int) tch, code);
     }
 }
