@@ -26,3 +26,9 @@ Y
 ,src/main/java/me/sungbin/ch02/ScannerEx.java,f/5/f56425f0c4a63a4b00e370ae30fa8a21c5cdf752
 W
 'src/main/java/me/sungbin/ch02/README.md,e/2/e220d35dbbcf4415ed0fb7f288d6894b3e95896d
+[
++src/main/java/me/sungbin/ch02/FloatEx1.java,1/b/1b7d6dfd16234b7fd065900253c7d32aafb9b331
+[
++src/main/java/me/sungbin/ch02/FloatEx2.java,9/d/9d8a20c63c334dfd53040b50e72c2460c6b3c8e3
+]
+-src/main/java/me/sungbin/ch02/CastingEx1.java,2/3/23f9ba6f47983775fa0f2883d12c79fe741e50ce
