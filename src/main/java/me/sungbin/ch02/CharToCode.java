@@ -20,9 +20,9 @@ public class CharToCode {
         System.out.printf("%c=%d(%X) %n", ch, code, code);
 
         char hch = '가';
-        System.out.printf("%c=%d(%X) %n", hch, code, code);
+        System.out.printf("%c=%d(%#X) %n", hch, (int) hch, (int) hch);
 
         char tch = '&';
-        System.out.printf("%c=%d(%X) %n", tch, (int) tch, code);
+        System.out.printf("%c=%d(%X) %n", tch, (int) tch, (int) tch);
     }
 }
