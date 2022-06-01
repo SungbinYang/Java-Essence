@@ -8,12 +8,6 @@ W
 'src/main/java/me/sungbin/ch01/README.md,4/a/4a31bbe0f4af3ec908d93a880740ea66c8fe2748
 X
 (src/main/java/me/sungbin/ch01/Hello.java,4/0/408bc20693d62a43060a378bd1f8bc28092a9499
-]
--src/main/java/me/sungbin/ch02/CastingEx1.java,2/3/23f9ba6f47983775fa0f2883d12c79fe741e50ce
-]
--src/main/java/me/sungbin/ch02/CastingEx3.java,c/1/c1b0757b83496427b4d9389c1784e51a98e0fe44
-]
--src/main/java/me/sungbin/ch02/CastingEx2.java,e/c/ec7916548f7be81b8000a055fbfcff32eeb5786c
 `
 0src/main/java/me/sungbin/ch01/practice/Info.java,3/3/339c592a78d5aee8f0712510a9a7f25d0666ba9c
 Y
