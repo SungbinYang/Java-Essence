@@ -40,8 +40,6 @@ W
 'src/main/java/me/sungbin/ch02/README.md,e/2/e220d35dbbcf4415ed0fb7f288d6894b3e95896d
 ]
 -src/main/java/me/sungbin/ch02/CastingEx1.java,2/3/23f9ba6f47983775fa0f2883d12c79fe741e50ce
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ^
 .src/main/java/me/sungbin/ch03/OperatorEx2.java,a/6/a6f7b67d8372aea2d4bec41a36151ed46d943afb
 ^
@@ -50,3 +48,37 @@ W
 .src/main/java/me/sungbin/ch03/OperatorEx3.java,d/b/db7fc17555eec5dead0626b5752f84026e2ea359
 ^
 .src/main/java/me/sungbin/ch03/OperatorEx4.java,5/9/593439173beaaec0ed75d8c34de991ffefe8677a
+^
+.src/main/java/me/sungbin/ch03/OperatorEx5.java,5/7/57f1379622da1b82fbc1538ef1d63b014953b8f4
+^
+.src/main/java/me/sungbin/ch03/OperatorEx6.java,2/e/2e08ab7d0b0d43e22718808d106fd2a68c9508f1
+^
+.src/main/java/me/sungbin/ch03/OperatorEx7.java,2/e/2eef93b93b4596b523162174b4875a4b97c22530
+^
+.src/main/java/me/sungbin/ch03/OperatorEx8.java,d/3/d3ec6345c651a959650f20d84c413e57831b289a
+^
+.src/main/java/me/sungbin/ch03/OperatorEx9.java,5/0/507230f3e1330c3971a35de2cc56316b5a9a9b1f
+_
+/src/main/java/me/sungbin/ch03/OperatorEx10.java,1/7/1739fea8229bc48ee1cc0193dc4caa5e9eb2d17b
+_
+/src/main/java/me/sungbin/ch03/OperatorEx11.java,1/2/126fda4a3f379fb70344dd66784b9c2688bbd3bf
+_
+/src/main/java/me/sungbin/ch03/OperatorEx12.java,6/5/65cc061162a669e4f621a9b1d2dfc609e088e705
+_
+/src/main/java/me/sungbin/ch03/OperatorEx13.java,5/c/5c05033078f86210c9cb448f352a376c1e4d5b29
+_
+/src/main/java/me/sungbin/ch03/OperatorEx14.java,a/7/a7d049364b0e58517aa87ca1f21b25a5a0ba6a25
+_
+/src/main/java/me/sungbin/ch03/OperatorEx15.java,9/0/90588ea6120cde42a0bbc1da92ca31cea133b446
+_
+/src/main/java/me/sungbin/ch03/OperatorEx16.java,a/9/a98180d19ceb54e6d1c2768276cde26120530613
+_
+/src/main/java/me/sungbin/ch03/OperatorEx17.java,7/7/7712b9a33f02b9db201eeb60281bf89b14d98b50
+_
+/src/main/java/me/sungbin/ch03/OperatorEx18.java,0/a/0a9103b054f8d02374d8d3d4257ca668557dc0c1
+_
+/src/main/java/me/sungbin/ch03/OperatorEx19.java,2/a/2a7ca430c72870ce8a29546bde4fd38909fc81a6
+_
+/src/main/java/me/sungbin/ch03/OperatorEx20.java,3/7/374b9f3d8c07d5b2e167a452d54e0ae4cdac8d33
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
