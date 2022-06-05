@@ -80,5 +80,9 @@ _
 /src/main/java/me/sungbin/ch03/OperatorEx19.java,2/a/2a7ca430c72870ce8a29546bde4fd38909fc81a6
 _
 /src/main/java/me/sungbin/ch03/OperatorEx20.java,3/7/374b9f3d8c07d5b2e167a452d54e0ae4cdac8d33
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+_
+/src/main/java/me/sungbin/ch03/OperatorEx21.java,6/6/669deda290e26f59a446155ec9cd84919da2d3b6
+_
+/src/main/java/me/sungbin/ch03/OperatorEx22.java,9/d/9d40ea4c77e35172e044770ed1011563ea173b32
+_
+/src/main/java/me/sungbin/ch03/OperatorEx23.java,3/9/3961e8fdc29675bc8b20a2bba663df17729e1d79
