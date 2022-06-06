@@ -86,3 +86,25 @@ _
 /src/main/java/me/sungbin/ch03/OperatorEx22.java,9/d/9d40ea4c77e35172e044770ed1011563ea173b32
 _
 /src/main/java/me/sungbin/ch03/OperatorEx23.java,3/9/3961e8fdc29675bc8b20a2bba663df17729e1d79
+_
+/src/main/java/me/sungbin/ch03/OperatorEx24.java,a/7/a74186cd81fa41eb127fb506c0b1a3b02d55cf50
+_
+/src/main/java/me/sungbin/ch03/OperatorEx25.java,f/b/fb8fa6738538fb8ee7edd7dacfa1b866ff3ad3e5
+_
+/src/main/java/me/sungbin/ch03/OperatorEx26.java,d/4/d4c6bac9141e5e6e12faf56f6a065f91f88905c5
+_
+/src/main/java/me/sungbin/ch03/OperatorEx27.java,7/8/78a4d214bbfee07ec95508ccdbcb28238f077a47
+_
+/src/main/java/me/sungbin/ch03/OperatorEx28.java,8/b/8b4ca2cddaf603074e0a2f288d19a17f49002933
+_
+/src/main/java/me/sungbin/ch03/OperatorEx29.java,d/1/d1d07c45bb583d051c7d7474096e61875fa0b6a2
+_
+/src/main/java/me/sungbin/ch03/OperatorEx30.java,8/7/871a8efa903273b9ee2e3258cda83ca02a42f48d
+_
+/src/main/java/me/sungbin/ch03/OperatorEx31.java,1/a/1af0d66afc56d4a7bf8345ba8b3d036634334644
+W
+'src/main/java/me/sungbin/ch03/README.md,c/e/ce9002017e33f9eb53b65a7c43553b4b5bc99fdf
+_
+/src/main/java/me/sungbin/ch03/OperatorEx32.java,8/1/8170954e12b2488a67013cc692c238778295255e
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
