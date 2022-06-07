@@ -22,3 +22,5 @@
 - 조건문과 반복문
   * 조건문 - if, switch
   * 반복문 - for, while, do-while
+- 배열
+  * 배열
