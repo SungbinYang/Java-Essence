@@ -24,3 +24,4 @@
   * 반복문 - for, while, do-while
 - 배열
   * 배열
+  * String 배열
