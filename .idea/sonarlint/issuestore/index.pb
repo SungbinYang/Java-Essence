@@ -198,3 +198,15 @@ W
 ,src/main/java/me/sungbin/ch05/ArrayEx10.java,0/d/0d14dfbe37f0b61ecb42ece678ab1b68cc4b5eb6
 \
 ,src/main/java/me/sungbin/ch05/ArrayEx11.java,1/a/1a188f52837ebb8876195aad34b9ceb8b24620ce
+\
+,src/main/java/me/sungbin/ch05/ArrayEx16.java,5/7/5769fbdc66ecf228529210c7332bfb953d93a9b4
+\
+,src/main/java/me/sungbin/ch05/ArrayEx17.java,4/1/41319eff54a200cf7ec07142ec133a8087752987
+\
+,src/main/java/me/sungbin/ch05/ArrayEx12.java,2/b/2be70b6f559be3169dc73d0dcd6b24622e1f8128
+\
+,src/main/java/me/sungbin/ch05/ArrayEx13.java,e/6/e625adeb72ae4e0bdb49c17a7bf5f82c6e13a8ff
+\
+,src/main/java/me/sungbin/ch05/ArrayEx14.java,b/7/b74528181891261d5eccdb2501c916062e39cb3d
+\
+,src/main/java/me/sungbin/ch05/ArrayEx15.java,3/8/38d2eaf2f501d7fc5ac9eb8c2dfa2172328cc6f4
