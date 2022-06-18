@@ -1,0 +1,34 @@
+package me.sungbin.ch07;
+
+/**
+ * @author : rovert
+ * @packageName : me.sungbin.ch07
+ * @fileName : SuperTest2
+ * @date : 2022/06/17
+ * @description :
+ * ===========================================================
+ * DATE 			AUTHOR			 NOTE
+ * -----------------------------------------------------------
+ * 2022/06/17       rovert         최초 생성
+ */
+
+class Parent2 {
+    int x = 10;
+}
+
+class Child2 extends Parent2 {
+    int x = 20;
+
+    void method() {
+        System.out.println("x = " + x);
+        System.out.println("this.x = " + this.x);
+        System.out.println("super.x = " + super.x);
+    }
+}
+
+public class SuperTest2 {
+    public static void main(String[] args) {
+        Child2 c = new Child2();
+        c.method();
+    }
+}
