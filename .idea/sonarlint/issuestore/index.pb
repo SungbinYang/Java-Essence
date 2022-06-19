@@ -294,3 +294,17 @@ W
 +src/main/java/me/sungbin/ch07/DeckTest.java,2/2/2221ad1cfd3c1904e1ff49f5348db6e5146eefb8
 W
 'src/main/java/me/sungbin/ch07/TVCR.java,8/a/8a9dff277af3ec895a9a1f19c76f91ab1901df97
+\
+,src/main/java/me/sungbin/ch07/SuperTest.java,4/4/4442b6993094f75a12088b65bd60175007403541
+]
+-src/main/java/me/sungbin/ch07/SuperTest2.java,f/c/fc0c3286dad2045e4f6b5056e1fed9ae55317266
+\
+,src/main/java/me/sungbin/ch07/PointTest.java,e/7/e7cf62543c4f61a6e5e7a775db3ab974332d5fa2
+]
+-src/main/java/me/sungbin/ch07/PointTest2.java,f/9/f9a0506b8fa7a36361160f2a2e0c9350d030620d
+c
+3src/main/java/me/sungbin/ch07/book/PackageTest.java,6/2/62ec749cb9410bb48b1a77e45ae614485c3482f5
+]
+-src/main/java/me/sungbin/ch07/ImportTest.java,5/c/5cc1c0853eb57551e8b0da3c7f34a4eb78954fc7
+b
+2src/main/java/me/sungbin/ch07/StaticImportEx1.java,1/b/1bea394e5e749a852e423318e00788a9925d4085

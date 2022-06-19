@@ -418,3 +418,301 @@ public class StaticImportEx1 {
 }
 
 ```
+
+## 제어자
+### 제어자란?
+제어자는 클래스, 변수 또는 메서드의 선언부에 함께 쓰여서 부가적인 의미를 부여한다. 제어자는 크게 접근제어자와 그외 제어자로 나눠진다.
+
+> 접근 제어자: public, protected, default, private
+그외: static, final, abstract, native, transient, synchronized, volatile, strictfp
+
+제어자는 클래스나 멤버변수와 메서드에 주로 사용되며, 여러 제어자를 조합하여 사용하는 것이 가능하다. 하지만, 접근제어자를 하나의 대상에 대해서 딱 한번만 사용할 수 있다. 즉, 여러번 사용할 수 없다.
+
+> 접근제어자 같은 경우 어디에 놓든 상관은 없지만, 일반적으로 맨 왼쪽에 놓는다.
+
+### static - 클래스의, 공통적인
+인스턴스 변수는 하나의 클래스로부터 생성되더라도 각기 다른 값을 유지하지만, static 멤버변수는 인스턴스 관계없이 같은 값을 갖는다. 그 이유는 하나의 변수를 모든 인스턴스가 공유하기 때문이다.
+static 키워드가 붙은 멤버변수, 메서드, 초기화 블럭은 인스턴스가 아닌 클래스에 관계된 것이기 때문에 인스턴스를 생성하지 않고도 사용이 가능하다.
+static메서드와 인스턴스 메서드의 차이는 그 메서드 안에서 인스턴스 변수를 사용하는가 아닌가 여부이다.
+
+> static이 사용할 수 있는 곳 - 멤버변수, 메서드, 초기화 블럭
+
+<table>
+  <tr>
+    <td>제어자</td>
+    <td>대상</td>
+    <td>의미</td>
+  </tr>
+  <tr>
+    <td rowspan="3">static</td>
+    <td>멤버변수</td>
+    <td>
+      <ul>
+        <li>모든 인스턴스에 공통적으로 사용되는 클래스변수가 된다.</li>
+        <li>클래스 변수는 인스턴스를 생성하지 않고도 사용가능하다.</li>
+        <li>클래스가 메모리에 로드될 때 생성된다.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="border-left: solid 0.5px;">메서드</td>
+    <td>
+    <ul>
+        <li>인스턴스를 생성하지 않고도 호출이 가능한 static 메서드가 된다.</li>
+        <li>static 메서드 내에서는 인스턴스 멤버들을 직접 사용할 수 없다.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+
+인스턴스 변수를 사용하지 않는 메서드는 static 메서드로 전환을 고려해보자. 일단, 그러면 속도 측면에서 정말 빠를 것이다.
+
+> 💡 참고
+static 초기화 블럭은 클래스가 메모리에 로드될 때, 단 한번만 수행되며, 주로 클래스변수를 초기화 하는데 사용된다.
+
+``` java
+class StaticTest {
+	static int width = 200;
+    static int height = 120;
+    
+    static {
+    	// static 변수 초기화..
+    }
+    
+    static int max(int a, int b) {
+    	return a > b ? a : b;
+    }
+}
+```
+
+### final - 마지막의, 변경될 수 없는
+final 키워드는 거의 모든 대상에 사용이 가능하다.
+변수에 사용되면 상수가 되고, 메서드에 사용되면 오버라이딩을 할 수 없다. 또한 클래스에 사용되면, 그 클래스는 상속이 불가능하다.
+
+> final이 사용되는 곳 - 클래스, 메서드, 멤버변수, 지역변수
+
+<table>
+  <tr>
+    <td>제어자</td>
+    <td>대상</td>
+    <td>의미</td>
+  </tr>
+  <tr>
+    <td rowspan="4">final</td>
+    <td>클래스</td>
+    <td>
+      변경될 수 없는 클래스, 확장될수 없는 클래스가 된다. <br />
+      그래서 final로 지정된 클래스는 다른 클래스의 조상이 될 수 없다.
+    </td>
+  </tr>
+  <tr>
+    <td style="border: solid 0.5px;">메서드</td>
+    <td>
+    	변경될 수 없는 메서드, final로 지정된 메서드는 오버라이딩을 통해 <br /> 재정의 될 수 없다.
+    </td>
+  </tr>
+  <tr>
+    <td style="border: solid 0.5px;">멤버변수</td>
+    <td rowspan="2">변수 앞에 final이 붙으면 변경할 수 없는 상수가 된다.</td>
+  </tr>
+  <tr>
+    <td style="border: solid 0.5px;">지역변수</td>
+  </tr>
+</table>
+
+> 대표적인 final 클래스로는 String과 Math가 있다.
+
+``` java
+final class FinalTest {
+	final int MAX_SIZE = 10;
+    
+    final int getMaxSize() {
+    	final int LV = MAX_SIZE;
+        
+        return MAX_SIZE;
+    }
+}
+```
+
+#### 생성자를 이용한 final 멤버 변수의 초기화
+final이 붙은 변수는 상수이므로 일반적으로 선언과 동시에 초기화를 바로 진행하는데, 인스턴스 변수의 경우에는 생성자를 통해서 초기화가 가능하다.
+생성자를 통해 초기화작업을 하게되면 인스턴스마다 다르게 초기화가 가능하다.
+
+### abstract - 추상의, 미완성의
+abstract을 붙으면 메서드의 선언부만 작성하고 실제 수행내용은 수행하지 않는 추상 메서드를 선언하는데 사용된다.
+
+> abstract가 사용되는 곳 - 클래스, 메서드
+
+<table>
+  <tr>
+    <td>제어자</td>
+    <td>대상</td>
+    <td>의미</td>
+  </tr>
+  <tr>
+    <td rowspan="2">abstract</td>
+    <td style="border: solid 0.5px;">클래스</td>
+    <td>클래스 내에 추상메서드가 선언되어 있음을 의미한다.</td>
+  </tr>
+  <tr>
+    <td style="border: solid 0.5px;">메서드</td>
+    <td>선언부만 작성하고 구현부는 작성하지 않은 추상 메서드임을 알린다.</td>
+  </tr>
+</table>
+
+추상 클래스는 아직 완성되지 않는 메서드가 존재하는 미완성 클래스임으로 인스턴스를 생성 할 수 없다.
+
+``` java
+abstract class AbstractTest {
+	abstract void move();
+}
+```
+
+하지만 가끔가다가 완성된 클래스에도 abstract 키워드를 붙여서 추상클래스로 만드는 경우도 있다. 이런 경우 완성된 클래스의 메서드에는 내용이 없는 메서드일 것이다. 이런 경우 인스턴스를 만들어봤자 할수 있는게 없기 때문에 일부러 생성못하게 abstract 키워드를 붙여 놓은 것이다. 또한 이런 클래스를 상속받아서 필요한 부분만 오버라이딩을 할 수 있는 효과가 있다.
+
+### 접근 제어자
+접근 제어자는 멤버 또는 클래스에 사용되며, 해당되는 멤버 혹은 클래스를 외부에서 접근하는 것을 제한하는 역할을 한다.
+접근제어자가 default인 경우는 실제로 접근제어자를 붙이지 않는다. 우리가 이제까지 작성했던 대부분 코드도 default 접근제어자가 붙은것과 같은 것이다.
+
+> 접근제어자가 사용될 수 있는 곳 - 클래스, 멤버변수, 매서드, 생성자
+- private: 같은 클래스 내에서만 접근이 가능하다.
+- default: 같은 패키지 내에서만 접근이 가능하다.
+- protected: 같은 패키지 내에서, 그리고 다른 패키지의 자손 클래스에서 접근이 가능하다.
+- public: 접근 제한이 없다.
+
+> 접근 제어자의 범위
+public > protected > (default) > private
+
+![](https://velog.velcdn.com/images/roberts/post/07a3aa3d-a373-4f66-bb38-075361960269/image.png)
+
+#### 접근 제어자를 이용한 캡슐화
+클래스나 멤버에 접근 제어자를 사용하는 이유는 클래스의 내부에 선언된 데이터를 보호함에 있다. 클래스의 내부 데이터가 유효한 값을 유지하게 하고, 비밀번호나 계좌정보같은 민감한 정보를 외부로부터 차단하기 위해서이다. 그리고, 그 클래스에서만 사용하는 즉, 임시작업을 위해 사용하는 멤버변수나 메서드를 외부로부터 감추기 위해서이다. 이것을 **캡슐화**라고 한다. 외부에서 접근할 필요가 없는 멤버들은 private으로 지정하여 외부로부터 노출시키지 않으므로 캡슐화를 지키는 것이라고 할 수 있다.
+
+> 접근제어자를 사용하는 이유
+- 외부로부터 데이터를 보호하기 위해서
+- 외부에는 불필요한, 내부적으로만 사용되는, 부분을 감추기 위해서
+
+그래서 접근제어자를 적절히 선택하는게 중요하다. 민감한 정보는 private으로 설정하고 상속관계에서 사용할것 같은 경우 protected로 사용하는게 좋다.
+
+예시를 통해 한번 접근제어자의 필요성을 느껴보자.
+
+``` java
+class Time {
+	public int hour;
+    public int minute;
+    public int second;
+}
+```
+
+위의 코드같은 경우 아래처럼 멤버변수를 접근 할 수 있다.
+
+``` java
+Time t = new Time();
+t.hour = 25;
+```
+
+하지만 이렇게 멤버변수를 접근하면 위의 코드처럼 시간 값을 25로 바꾼다. 하지만 우리 세계에서 25시는 없다. 이런 오류를 막을 방법은 클라이언트 단에서 인지하고 조건문을 걸어주는 방법 말곤 막을 방법이 없다. 이때 접근제어자를 private이나 protected로 바꾸고 이 멤버변수를 접근해주는 public메서드를 많이 사용한다. 흔히 우리가 그것을 getter, setter로 부른다.
+
+``` java
+class Time {
+    private int hour, minute, second;
+
+    public Time(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        if (hour < 0 || hour > 23) {
+            return;
+        }
+
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        if (minute < 0 || minute > 59) {
+            return;
+        }
+
+        this.minute = minute;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public void setSecond(int second) {
+        if (second < 0 || second > 59) {
+            return;
+        }
+
+        this.second = second;
+    }
+
+    @Override
+    public String toString() {
+        return hour + ":" + minute + ":" + second;
+    }
+}
+```
+
+getter는 단순히 멤버변수를 반환하는 역할을 하고 setter는 매개변수로 지정한 값을 검사하여 조건에 맞는 값일 때만 변경하도록 한다.
+
+추후에 우리는 이 getter setter를 record나 lombok을 이용하여 쉽게 처리할 수 있다.
+
+getter, setter규칙은 각각 get + 멤버변수 이름 / set + 멤버변수 이름 으로 지은다. 일종의 java naming convention이라고 할 수 있다.
+
+> ⚠️ 주의
+하나의 소스파일에는 public 클래스가 단 하나만 존재할 수 있으며, 소스파일의 이름은 반드시 public 클래스의 이름과 같아야 한다.
+
+#### 생성자의 접근 제어자
+생성자에 접근 제어자를 사용함으로 인스턴스의 생성을 제한할 수 있다. 보통 생성자의 접근제어자는 클래스의 접근제어자와 동일하지만 다르게 설정을 가능하게 할 수 있다.
+
+``` java
+class Singleton {
+	private Singleton() {
+    }
+}
+```
+
+위의 코드를 보면 생성자를 private 접근제어자로 지정을 하였다. 이런 경우는 외부에서 인스턴스를 생성할 수 없다. 그래서 내부에서 인스턴스를 생성해서 반환해주는 public 메서드를 제공하여 외부에서 이 클래스의 인스턴스를 사용하도록 해야한다. 이 메서드는 그래서 public인 동시에 static이어야 한다.
+
+``` java
+final class Singleton {
+	private static Singleton s = new Singleton();
+    
+	private Singleton {
+    }
+    
+    public static Singleton getInstance() {
+    	return s;
+    }
+}
+```
+
+이처럼 생성자를 통해 직접 인스턴스를 생성하지 못하게 하고 public메서드를 통해 인스턴스에 접근하게 함으로 사용할 수 있는 인스턴스의 개수를 제한한다. 이런 패턴을 디자인패턴중에 **싱글톤 패턴**이라고 한다.
+그리고 생성자 접근제어자가 private인 경우는 다른 클래스의 상위 클래스가 될 수 없다. 그래서 이런 경우 class 앞에다가 final 키워드를 보통 붙여준다.
+
+### 접근제어자의 조합
+
+![](https://velog.velcdn.com/images/roberts/post/396ca457-32db-4e7b-8885-4b199a1dde36/image.png)
+
+> ⚠️ 주의
+1. 메서드에 static과 abstract를 함께 사용할 수 없다.
+   static메서드는 몸통이 있는 메서드에만 사용할 수 있기 때문이다. <br />
+2. 클래스에 abstract과 final을 동시에 사용할 수 없다.
+   클래스에 사용되는 final은 클래스를 확장할 수 없다는 의미이고, abstract는 상속을 통해 완성되어야 한다는 의미이므로 서로 모순되기 때문이다. <br />
+3. abstract메서드의 접근 제어자가 private이 될 수 없다.
+   abstract메서드는 자손클래스에서 구현해주어야 하는데 접근제어자가 private이면, 자손 클래스에서 접근할 수 없기 때문이다. <br />
+4. 메서드에 private과 final을 같이 사용할 필요는 없다.
+   접근 제어자가 private인 경우 메서드는 오버라이딩될 수 없기 때문이다. 이 둘 중 하나만 사용해도 충분하다.
