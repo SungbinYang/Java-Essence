@@ -332,3 +332,17 @@ d
 4src/main/java/me/sungbin/ch07/PolyArgumentTest2.java,8/6/86b68b4bd122f29b13b70433bc3f9758d9aa5f13
 d
 4src/main/java/me/sungbin/ch07/PolyArgumentTest3.java,a/a/aa4dc33db827a9a34faadb3099b6c982243cf0f1
+W
+'src/main/java/me/sungbin/ch07/README.md,f/3/f3ad461740c72196bdc996ed0ea85c302c0b5443
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+a
+1src/main/java/me/sungbin/ch07/RepairableTest.java,2/7/27bc7da717fd7f079c408d1274ff91c3eae285f0
+`
+0src/main/java/me/sungbin/ch07/InterfaceTest.java,3/7/3789638bd0d57096c450416f7abd1b75b1424df0
+a
+1src/main/java/me/sungbin/ch07/InterfaceTest2.java,9/f/9f612d8a43e2a7d872366ff3f2da28c165b6d0bd
+a
+1src/main/java/me/sungbin/ch07/InterfaceTest3.java,7/2/721a24632c2999ead907926ca3d07da365604946
+d
+4src/main/java/me/sungbin/ch07/DefaultMethodTest.java,a/c/ac3bd1c56c142cf6e69f70e2436920456e0d0d30
