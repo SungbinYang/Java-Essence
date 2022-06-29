@@ -412,5 +412,3 @@ c
 0src/main/java/me/sungbin/ch08/ExceptionEx17.java,6/4/64e258b805fb02cf20343320ed1325e2bd3da14c
 e
 5src/main/java/me/sungbin/ch08/ChainedExceptionEx.java,6/1/6116273f8a539ec4e46bc6eb2301d1bc6142ade0
-W
-'src/main/java/me/sungbin/ch08/README.md,7/6/760d9b2d485f5e55f1908a8d76b6a90b52efe2f4
