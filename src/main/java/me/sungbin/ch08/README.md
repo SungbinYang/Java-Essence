@@ -22,3 +22,13 @@ https://itmining.tistory.com/9
 예외: 프로그램 코드에 의해서 수습될 수 있는 다소 미약한 오류
 
 에러가 발생하면 프로그램의 갑작스러운 종료를 막을 길이 없지만 예외는 우리 개발자가 대비할 수 있다. 적절하게 예외처리를 함으로 비정상적인 종료를 막을 수 있다.
+
+### 예외 클래스의 계층 구조
+오류와 예외 클래스들이 자바에서는 제공을 해준다. 이 클래스들 역시 Object 클래스의 하위 클래스이다. 아래의 그림은 예외 클래스가 어떻게 구성이 되었는지 계층 구도이다.
+
+![](https://velog.velcdn.com/images/roberts/post/07330085-613f-43d8-8a45-2a1b237793c6/image.jpeg)
+
+위의 그림을 보면 예외 클래스들은 2가지 그룹으로 나눠지는 것을 볼 수 있다. 바로 Checked Exception과 Runtime Exception으로 나눠진다.
+
+> Checked Exception : 예외를 반드시 처리해야 하는 예외
+RuntimeException: 예외를 명시적으로 처리를 안 해줘도 되는 예외
