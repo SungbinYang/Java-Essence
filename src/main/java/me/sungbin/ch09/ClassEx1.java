@@ -12,7 +12,7 @@ package me.sungbin.ch09;
  * 2022/07/02       rovert         최초 생성
  */
 
-class Card3 {
+final class Card3 {
     String kind;
     int num;
 

@@ -414,3 +414,17 @@ e
 5src/main/java/me/sungbin/ch08/ChainedExceptionEx.java,6/1/6116273f8a539ec4e46bc6eb2301d1bc6142ade0
 W
 'src/main/java/me/sungbin/ch08/README.md,7/6/760d9b2d485f5e55f1908a8d76b6a90b52efe2f4
+W
+'src/main/java/me/sungbin/ch09/README.md,4/3/43d0b2f63567b47745936ac91845b266876983d8
+\
+,src/main/java/me/sungbin/ch09/StringEx2.java,a/3/a3fd404247955894dd1845453a5caa4cfb27c8cc
+\
+,src/main/java/me/sungbin/ch09/StringEx3.java,b/5/b5e1ed7d7794284190ac5ab7a6c9f2becb5865a9
+\
+,src/main/java/me/sungbin/ch09/StringEx4.java,b/4/b4828156b0143a87a9f7f58cdd33354afc695d87
+\
+,src/main/java/me/sungbin/ch09/StringEx5.java,9/7/97b770fb1ed2ee55d9b72d3c2eafa8ece80db9ee
+\
+,src/main/java/me/sungbin/ch09/StringEx6.java,b/c/bcdba680a9be9663e403dfe5940854d0a8f6fbfe
+\
+,src/main/java/me/sungbin/ch09/StringEx7.java,1/b/1b3ab665faa57a8785a7a222254bb7a7a3a96e3f
