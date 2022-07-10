@@ -200,7 +200,7 @@ C언어에서는 문자열의 끝에 널 문자가 항상 붙지만, 자바에�
 일반적으로 변수를 선언할 때, 각 타입의 기본값으로 초기화 하지만 String은 참조형 타입의 기본값인 null보단, 빈 문자열로, char형은 기본값인 '\u0000'보단, ' '로 초기화 하는 것이 보통이다.
 
 #### String 클래스의 생성자와 메서드
-|제목|내용|
+|메서드|설명|
 |------|---|
 |String(String s)|주어진 문자열을 갖는 String 인스턴스를 생성한다.|
 |String(char[] value)|주어진 문자열을 갖는 String 인스턴스를 생성한다.|
@@ -271,3 +271,50 @@ format()은 형식화된 문자열을 만들어내는 간단한 방법이다. �
 int i = Integer.parseInt("100");
 int i2 = Integer.valueOf("100");
 ```
+
+### StringBuffer클래스와 StringBuilder클래스
+String 클래스는 인스턴스를 생성할 때, 지정된 문자열을 변경하지 못하지만 StringBuffer 클래스는 변경이 가능하다. 내부적으로 Buffer를 가지고 있어서 StringBuffer 인스턴스를 생성할 때 그 크기를 지정할 수 있다.
+
+편집을 할 때, 문자열의 길이를 고려하여 버퍼의 길이를 충분히 잡아주는 것이 좋다. 크기를 지정하지 않으면 기본 크기로 잡히는데 기본 크기는 16이다.
+
+``` java
+public final class StringBuffer implements java.io.Serializable {
+	private char[] value;
+    ...
+}
+```
+
+#### StringBuffer의 생성자
+StringBuffer클래스의 인스턴스를 생성할 때, 적절한 길이의 char형 배열이 생성되고, 이 배열은 문자열을 저장하고 편집하기 위한 공간으로 사용된다.
+
+StringBuffer 인스턴스를 생성할 때는 생성자를 이용하여 지정할 문자열의 길이를 충분히 잡아주는게 중요하다. 지정하지 않으면 크기는 16이다.
+
+#### StringBuffer의 변경
+String과 달리 StringBuffer는 내용을 변경이 가능하다. 일반적으로 StringBuffer 반환타입의 메서드인 append()를 이용하여 변경이 가능하다.
+
+#### StringBuffer의 비교
+문자열 비교연산자에는 '=='와 equals() 메서드가 있다. String 클래스에서는 equals() 메서드가 오버라이딩되어 있지만, StringBuffer 클래스는 equals() 메서드가 오버라이딩되어 있지 않다. 반면에, toString() 메서드는 오버라이딩되어 있어서 toString()을 호출하고, 담고 있는 문자열을 String으로 반환하여 비교를 한다.
+
+#### StringBuffer클래스의 생성자와 메서드
+
+|메서드|설명|
+|------|---|
+|StringBuffer()|16문자를 담을수 있는 버퍼를 가진 StringBuffer 인스턴스를 생성한다.|
+|StringBuffer(int length)|지정된 개수의 문자를 담을 수 있는 버퍼를 가진 <br /> StringBuffer인스턴스를 생성한다.|
+|StringBuffer(String str)|지정된 문자열 값 str을 갖는 StringBuffer 인스턴스를 생성한다.|
+|StringBuffer append(boolen b) <br /> StringBuffer append(char c) <br /> StringBuffer append(char[] str) <br /> StringBuffer append(double d) <br /> StringBuffer append(float f) <br /> StringBuffer append(int i) <br /> StringBuffer append(long l) <br /> StringBuffer append(Object obj) <br /> StringBuffer append(String str) <br />|매개변수로 입력된 값을 문자열로 변환하여 <br /> StringBuffer 인스턴스가 저장하고 있는 문자열의 뒤에 덧붙인다.|
+|int capacity()|StringBuffer 인스턴스의 버퍼크기를 알려준다. <br /> length()는 버퍼에 담긴 문자열의 길이를 알려준다.|
+|char charAt(int index)|지정된 위치에 있는 문자를 반환한다.|
+|StringBuffer delete(int start, int end)|시작위치 start부터 끝 위치 end사이에 있는 문자를 제거한다. 단, 끝 문자는 제외|
+|StringBuffer deleteCharAt(int index)|지정된 위치 index의 문자를 제거한다.|
+|StringBuffer insert(int pos, boolean b) <br /> StringBuffer insert(int pos, char c) <br /> StringBuffer insert(int pos, char[] str) <br /> StringBuffer insert(int pos, double d) <br /> StringBuffer insert(int pos, float f) <br /> StringBuffer insert(int pos, int i) <br /> StringBuffer insert(int pos, long l) <br /> StringBuffer insert(int pos, Object obj) <br /> StringBuffer insert(int pos, String str)|두번째 매개변수로 바든 값을 문자열로 변환하여 지정된 위치 pos에 추가한다. pos는 0부터 시작|
+|int length()|StringBuffer인스턴스에 저장되어 있는 문자열의 길이를 반환한다.|
+|StringBuffer replace(int start, int end, String str)|지정된 범위 start ~ end의 문자들을 주어진 문자열로 바꾼다. end 위치의 문자는 범위에 포함되지 않음|
+|StringBuffer reverse()|StringBuffer인스턴스에 저장되어 있는 문자열의 순서를 거꾸로 나열한다.|
+|void setCharAt(int index, char ch)|지정된 위치의 문자를 주어진 문자 ch로 바꾼다.|
+|void setLength(int newLength)|지정된 길이로 문자열의 길이를 변경한다. 길이를 늘리는 경우에 나머지 빈 공간을 널문자 '\u0000'로 채운다.|
+|String toString()|StringBuffer인스턴스의 문자열을 String으로 변환|
+|String substring(int start) <br /> String substring(int start, int end)|지정된 범위 내의 문자열을 String으로 뽑아서 반환한다. 시작위치 start만 지정하면 시작위치부터 문자열 끝까지 뽑아서 반환한다.|
+
+#### StringBuilder란?
+StringBuffer는 멀티쓰레드에 안전하도록 동기화되어 있다. 동기화는 StringBuffer의 성능을 떨어트린다. 그래서 StringBuffer의 동기화 기능만 뺀 StringBuilder 클래스가 추가되었다.
