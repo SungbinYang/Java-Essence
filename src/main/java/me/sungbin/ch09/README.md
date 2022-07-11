@@ -1,5 +1,6 @@
 > 참고
 [자바의 정석](http://www.yes24.com/Product/Search?domain=ALL&query=%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D&pid=123487&cosemkid=go16214999081121496&gclid=Cj0KCQjwmuiTBhDoARIsAPiv6L9xwP5-CSNKhbr9xyqRtRORbKj8Eo29uQrx6hkOyS5ruqrFnfFy_h8aAplzEALw_wcB)
+https://pridiot.tistory.com/60
 
 ## java.lang 패키지
 java.lang 패키지는 자바 프로그래밍을 하면서 가장 기초가 되는 클래스들을 포함하고 있다. 그래서 우리가 String 클래스나 System 클래스들을 import문 없이 사용할 수 있었던 것이다.
@@ -365,3 +366,61 @@ Math클래스는 최대한 성능을 얻기 위해 JVM이 설치된 OS의 메서
 |static double random()|0.0~1.0범위의 임의의 double값을 반환한다. <br /> (1.0은 범위에 포함하지 않는다.)|
 |static double rint(double d)|주어진 double값과 가장 가까운 정수값을 double형으로 반환한다. <br /> 단, 두 정수의 정가운데 있는 값 (1.5, 2.5, 3.5등)은 짝수를 반환|
 |static long round(double a) <br /> static long round(float a)|소수점 첫째자리에서 반올림한 정수 값을 반환한다. 매개변수의 값이 음수인 경우에 round()와 rint()의 결과가 다르다는 것을 주의해야 한다.|
+
+### wrapper 클래스
+객체지향 개념에서 모든 것은 객체로 다루어져야 한다. 그러나 자바에서는 8개의 기본형을 객체로 다루지 않는다. 그 대신, 보다 높은 성능은 챙길 수 있다.
+
+때로는 기본형 변수도 객체로 다뤄야할 타이밍이 있다. 매개변수로 객체를 요구하거나 객체를 반환해야할 때등 여러 경우가 있는데 이 때 기본형도 객체로 표형해야한다. 이렇게 기본형 타입을 객체로 표현한 것을 wrapper 클래스라고 한다.
+
+wrapper 클래스는 기본형 타입이 8개인것 처럼 8개가 존재한다.
+wrapper 클래스의 생성자는 매개변수로 문자열이나 각 자료형의 값들을 인자로 받는다.
+
+그럼 wrapper 클래스의 종류를 아래의 표를 통해 확인해보자.
+
+|기본형|래퍼클래스|생성자|
+|------|---|---|
+|boolean|Boolean|Boolean(boolean value) <br /> Boolean (String s)|
+|char|Character|Character(char value)|
+|byte|Byte|Byte(byte value) <br /> Byte(String s)|
+|short|Short|Short(short value) <br /> Short(String s)|
+|int|Integer|Integer(int value) <br /> Integer(String s)|
+|long|Long|Long(long value) <br /> Long(String s)|
+|float|Float|Float(double value) <br /> Float(float value) <br /> Float(String s)|
+|double|Double|Double(double value) <br /> Double(String s)|
+
+wrapper 클래스들은 모두 equals()가 오버라이딩되어 있어서 주소값이 아닌 객체가 가지고 있는 값을 비교한다. 단, 오토박싱이 된다고 해도 Integer객체에 비교연산자를 사용할 수 없다. 대신에 compareTo 메서드를 이용하여 비교를 할 수 있다.
+
+또한, toString()도 오버라이딩되어 있어서 객체가 가지고 있는 값을 문자열로 변환하여 반환한다.
+또한, 여러가지 static 변수들을 포함하고 있다.
+
+#### Number 클래스
+이 클래스는 추상클래스로 숫자와 관련된 wrapper클래스의 상위 클래스이다. 아래의 계층도를 확인해보자.
+
+![](https://velog.velcdn.com/images/roberts/post/a1be8378-4b6c-4f65-ac28-68cb1c173e11/image.png)
+
+Number 클래스의 하위 클래스로 우리가 배운 클래스 외에 BigInteger 클래스, BigDecimal 클래스가 존재하는데, BigInteger 클래스는 long으로도 다룰 수 없는 큰 범위의 정수를, BigDecimal은 double로도 다룰 수 없는 큰 범위의 부동 소수점수를 처리하기 위한 역할을 한다.
+
+#### 문자열을 숫자로 변환하기
+문자열을 숫자로 변환할 때, 아래와 같이 사용하면 된다.
+
+``` java
+int i = new Integer("100").intValue();
+int i2 = Integer.parseInt("100"); // 자주 사용하는 방법
+Integer i3 = Integer.valueOf("100");
+```
+
+래퍼클래스들의 메서드를 확인하다보면 타입.parse타입(String s)형식의 메서드와 타입.valueOf() 메서드가 자주 사용한다. 그런데 이 메서드들은 똑같이 문자열에서 각 타입으로 변환해주는 것은 같지만 차이는 전자는 반환형이 기본타입이고, 후자는 반환형이 래퍼클래스 타입이다.
+
+하지만 JDK1.5부터 도입된 오토박싱 기능때문에 반환값이 기본형일때와 래퍼클래스일때와 차이가 없어졌다. 그래서 보통은 구분없이 valueOf()를 쓰지만 성능상 valueOf()를 많이 쓰기 때문에 성능에 민감한 어플리케이션이라면 valueOf()를 쓰는 것을 지양한다.
+
+또한, parse타입 메서드를 쓸 때, 2번째 인자로 진법(int)을 넣을 수 있다. 기본은 10진법이며, 다른 진법을 표현할 때 해당하는 진법을 기입하면 된다.
+
+``` java
+int i = Integer.parseInt("FF", 16); // 16진법 -> 정수
+```
+
+#### 오토박싱 & 언박싱
+JDK1.5이전에는 기본형과 참조형 간의 연산이 불가능해서 기본형을 래퍼클래스로 객체를 만들어 연산을 해야했다.
+하지만, 이제는 기본형과 참조형 간의 연산이 가능해졌다. 컴파일러가 자동으로 변환하는 코드를 넣어주기 때문이다.
+
+이외에도, 내부적으로 객체 배열을 가지고 있는 Vector클래스나 ArrayList클래스에 기본형 값을 저장해야할 때나 형변환이 필요할 때도 컴파일러가 자동적으로 코드를 추가해준다. 기본형 값을 래퍼클래스의 객체로 자동 변환해주는 것을 오토박싱이라고 하고, 반대로 변환하는 것을 언박싱이라고 한다.

@@ -364,8 +364,6 @@ d
 +src/main/java/me/sungbin/ch07/InnerEx8.java,5/2/522fe71a73c2e5706b55b0d54a25ff2335801c84
 W
 'src/main/java/me/sungbin/ch07/README.md,f/3/f3ad461740c72196bdc996ed0ea85c302c0b5443
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 `
 0src/main/java/me/sungbin/ch08/ExceptionEx15.java,d/0/d0d7c50132046f4282f00c67476c2f5cc9d67619
 `
@@ -434,3 +432,27 @@ b
 2src/main/java/me/sungbin/ch09/ShallowDeepCopy.java,7/0/7096a126697ca399aa8c3f7ab3663457a166e125
 [
 +src/main/java/me/sungbin/ch09/ClassEx1.java,7/5/751d6e90ddb7637993ca5ca960af9096280e4e1e
+\
+,src/main/java/me/sungbin/ch09/StringEx1.java,1/3/137e331ea411f6287278e71cb0bb8c9936e325c6
+\
+,src/main/java/me/sungbin/ch09/StringEx2.java,a/3/a3fd404247955894dd1845453a5caa4cfb27c8cc
+\
+,src/main/java/me/sungbin/ch09/StringEx3.java,b/5/b5e1ed7d7794284190ac5ab7a6c9f2becb5865a9
+\
+,src/main/java/me/sungbin/ch09/StringEx4.java,b/4/b4828156b0143a87a9f7f58cdd33354afc695d87
+\
+,src/main/java/me/sungbin/ch09/StringEx5.java,9/7/97b770fb1ed2ee55d9b72d3c2eafa8ece80db9ee
+\
+,src/main/java/me/sungbin/ch09/StringEx6.java,b/c/bcdba680a9be9663e403dfe5940854d0a8f6fbfe
+\
+,src/main/java/me/sungbin/ch09/StringEx7.java,1/b/1b3ab665faa57a8785a7a222254bb7a7a3a96e3f
+b
+2src/main/java/me/sungbin/ch09/StringBufferEx1.java,9/2/922b80cf38c6dd6ac26719c01a7d1009a7927621
+b
+2src/main/java/me/sungbin/ch09/StringBufferEx2.java,3/2/32d59a4f7c4f177fc9b6a92345e21733922ddad0
+Z
+*src/main/java/me/sungbin/ch09/MathEx1.java,7/4/742c6448500d5400f2247074200ce42b74c86e5a
+Z
+*src/main/java/me/sungbin/ch09/MathEx2.java,5/b/5bacd3021bb5eda2048eaf6c02aff4f9c14fef8a
+Z
+*src/main/java/me/sungbin/ch09/MathEx3.java,e/5/e546376a98cd559f9c8f8be4661e02f76910f74d
