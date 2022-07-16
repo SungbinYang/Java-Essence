@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class RandomEx1 {
     public static void main(String[] args) {
-        Random rand = new Random();
-        Random rand2 = new Random();
+        Random rand = new Random(1);
+        Random rand2 = new Random(1);
 
         System.out.println("= rand =");
 

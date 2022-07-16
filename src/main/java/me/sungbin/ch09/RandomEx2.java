@@ -21,7 +21,7 @@ public class RandomEx2 {
         int[] counter = new int[10];
 
         for (int i = 0; i < number.length; i++) {
-            System.out.println(number[i] = rand.nextInt(10));
+            System.out.print(number[i] = rand.nextInt(10));
         }
         System.out.println();
 
