@@ -575,3 +575,21 @@ String input = s.nextLine();
 Console console = System.console();
 String input = console.readLine();
 ```
+
+### java.util.StringTokenizer 클래스
+StringTokenizer 클래스는 긴 문자열을 지정된 구분자를 기준으로 토큰이라는 여러개의 문자열로 잘라냐는데 사용된다.
+
+StringTokenizer 클래스 외에도 String의 split() 메서드를 사용하거나, Scanner의 useDelimiter()를 사용할 수 있지만, 이 2가지 방법은 정규식을 사용해야 함으로 정규식이 어렵다면, StringTokenizer을 이용하여 간단하게 사용하는 법도 있다.
+
+> ⚠️ 주의
+StringTokenizer는 구분자로 단 하나의 문자밖에 사용하지 못하기 때문에 복잡한 형태라면 정규식 표현을 이용하는것이 좋다.
+
+#### StringTokenizer의 생성자와 메서드
+
+|생성자 / 메서드|설명|
+|------|---|
+|StringTokenizer(String str, String delim)|문자열 str을 지정된 구분자 delim로 나누는 StringTokenizer를 생성한다. (구분자는 토큰으로 간주하지 않는다.)|
+|StringTokenizer(String str, String delim, boolean returnDelims)|문자열 str을 지정된 구분자 delim로 나누는 StringTokenizer를 생성한다. returnDelims의 값을 true로 하면 구분자도 토큰으로 간주한다.|
+|int countTokens()|전체 토큰의 수를 반환한다.|
+|boolean hasMoreTokens()|토큰이 남아 있는지 알려준다.|
+|String nextToken()|다음 토큰을 반환한다.|
