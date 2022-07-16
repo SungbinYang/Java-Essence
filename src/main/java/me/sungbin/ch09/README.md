@@ -424,3 +424,51 @@ JDK1.5이전에는 기본형과 참조형 간의 연산이 불가능해서 기�
 하지만, 이제는 기본형과 참조형 간의 연산이 가능해졌다. 컴파일러가 자동으로 변환하는 코드를 넣어주기 때문이다.
 
 이외에도, 내부적으로 객체 배열을 가지고 있는 Vector클래스나 ArrayList클래스에 기본형 값을 저장해야할 때나 형변환이 필요할 때도 컴파일러가 자동적으로 코드를 추가해준다. 기본형 값을 래퍼클래스의 객체로 자동 변환해주는 것을 오토박싱이라고 하고, 반대로 변환하는 것을 언박싱이라고 한다.
+
+## 유용한 클래스
+
+### java.util.Objects 클래스
+Objects 클래스는 Object 클래스의 보조 클래스이며, Math 클래스처럼 모든 메서드가 static이다. 객체의 비교나 널체크가 유용하다.
+
+대표적으로 isNull()과 nonNull() 메서드가 존재하는데, isNull() 메서드는 해당 객체가 null인지 아닌지 boolean형으로 반환을 하고 nonNull() 메서드는 그 반대의 일을 한다.
+
+``` java
+static boolean isNull(Object obj)
+static boolean nonNull(Object obj)
+```
+
+또한 requireNonNull() 메서드를 많이 사용하는데 이 메서드는 해당 객체가 null이 아니어야 하는 경우에 사용한다. 만일 해당 객체가 null일 경우면 NullPointerException 예외를 발생시킨다.
+
+또한 Object 클래스에는 객체의 등가비교를 위한 equals()만 있고 비교 연산은 할 수가 없었다. 그래서 Objects 클래스에서는 compare() 메서드가 추가가 되었다.
+
+``` java
+static int compare(Object a, Object b, Comparator c)
+```
+
+compare 메서드는 두 객체를 비교하는데 비교대상이 같으면 0 크면 양수 작으면 음수를 반환한다. 또한 두 객체를 비교하는데 비교기준이 필요하는데 바로 그 역할이 3번째 파라미터 Comparator가 한다.
+
+또한 equals() 메서드와 deepEquals() 메서드가 존재한다.
+
+``` java
+static boolean equals(Object a, Object b)
+static boolean deepEquals(Object a, Object b)
+```
+
+equals() 메서드는 Object 클래스에도 있는데 왜 또 존재하는지 궁금할 것이다. Objects 클래스의 equals() 메서드는 null 체크를 따로 하지 않아도 된다. 왜냐하면 내부적으로 null 체크를 따로 하기 때문이다.
+deepEquals() 메서드는 객체를 재귀적으로 비교를 하여 다차원 배열도 비교가 가능하다.
+
+다차원 배열을 쓸려면 equals() 메서드로는 반복문을 통하여 비교를 하여야 하지만 deepEquals() 메서드를 쓰면 따로 반복문 없이 간단히 처리가 가능하다.
+
+``` java
+static String toString(Object o)
+static String toString(Object o, String nullDefault);
+```
+
+toString() 메서드도 equals() 메서드처럼 null 체크를 한다는 것 말고는 Object 클래스의 메서드와 기능적으로 동일하다.
+
+``` java
+static int hashCode(Object o)
+static int hashCode(Object... values)
+```
+
+hashCode() 메서드도 내부적으로 null 체크를 하고난 후, Object 클래스의 hashCode() 메서드를 호출한다. 단, null일 경우 0을 반환한다.
