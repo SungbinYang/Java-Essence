@@ -682,3 +682,91 @@ BigInteger setBit(int n) // 우측에서 n+1번째 비트를 1로 변경
 BigInteger clearBit(int n) // 우측에서 n+1번째 비트를 0으로 변경
 BigInteger flipBit(int n) // 우측에서 n+1번째 비트를 전환 (1 -> 0, 0 -> 1)
 ```
+
+### java.math.BigDecimal 클래스
+double 타입으로 표현할 수 있는 값은 상당히 넓지만 정밀도가 최대 13자리 밖에 되지 않고 실수형의 특성상 오차를 피할 수 없다. BigDecimal은 실수형과 달리 정수를 이용해서 실수를 표현한다.
+
+그리고 BigDecimal은 정수를 저장하는데 BigInteger를 사용한다.
+
+> 💡 참고
+BigInteger처럼 BigDecimal도 불변이다.
+
+``` java
+private final BigInteger intVal; // 정수 (unscaled value)
+private final int scale; // 지수 (scale)
+private transient int precision; // 정밀도 - 정수의 자릿수 
+```
+
+#### BigDecimal의 생성
+BigDecimal를 생성하는 방법은 여러가지가 있는데, 문자열로 숫자를 표현하는 것이 일반적이다. 기본형 리터럴로는 표현할 수 있는 값의 한계가 있기 때문이다.
+
+> ⚠️ 주의
+한가지 주의할 점은 double타입의 값을 매개변수로 갖는 생성자를 사용하면 오차가 발생할 수 있다.
+
+#### 다른 타입으로의 변환
+BigDecimal을 문자열로 변환하는 메서드는 다음과 같다.
+
+``` java
+String toPlainString() // 어떤 경우에도 다른 기호없이 숫자로만 표현
+String toString() // 필요하면 지수형태로 표현할 수 있음
+```
+
+BigDecimal도 Number 클래스로부터 상속받은 기본형으로 변환하는 메서들을 가지고 있다.
+
+``` java
+int intValue()
+long longValue()
+float floatValue()
+double doubleValue()
+```
+
+BigDecimal을 정수형으로 변환하는 메서드중에서 이름끝에 'Exact'가 붙은 것들은 변환한 결과가 변환한 타입의 범위에 속하지 않으면 ArithmeticException을 발생시킨다.
+
+``` java
+byte byteValueExact()
+short shortValueExact()
+int intValueExact()
+long longValueExact()
+BigInteger toBigIntegerExact()
+```
+
+#### BigDecimal의 연산
+BigDecimal에는 실수형에 사용할 수 있는 모든 연산자와 수학적인 계산을 쉽게 해주는 메서드들이 정의되어 있다.
+
+``` java
+BigDecimal add(BigDecimal val) // 덧셈
+BigDecimal substract(BigDecimal val) // 뺄셈
+BigDecimal multiply(BigDecimal val) // 곱셈
+BigDecimal divide(BigDecimal val) // 나눗셈
+BigDecimal remainder(BigDecimal val) // 나머지
+```
+
+한 가지 참고할 사항은 연산결과에 따라 연산결과의 정수, 지수, 정밀도가 달라진다.
+곱셈에서는 두 피연산자의 scale을 더하고, 나눗셈에서는 뺀다. 덧셈과 뺄셈에서는 둘 중에서 자리수가 높은 쪽으로 맞추기 위해서 두 scale중에서 큰 쪽이 결과가 된다.
+
+#### 반올림 모드 - divide()와 setScale()
+다른 연산과 달리 나눗셈을 처리하기 위한 메서드는 다양한 버전이 존재한다. 나눗셈의 결과를 어떻게 반올림 처리할 것인가와 몇 번째 자리에서 반올림할 것인지를 지정할 수 있다. 또한, 나눗셈에서는 오차가 어쩔수 없이 발생한다.
+
+또한 roundingMode가 존재하는데 roundingMode는 반올림 처리방법에 대한 것으로 BigDecimal에 정의된 'ROUND_'로 시작하는 상수들 중에서 선택해서 사용하면 된다. RoundingMode는 이 상수들을 열겨형으로 정의하는것으로 나중에 추가가 되었다.
+
+|상수|설명|
+|------|---|
+|CELING|올림|
+|FLOOR|내림|
+|UP|양수일 때 올림, 음수일 때 내림|
+|DOWN|양수일 때 내림, 음수일 때 올림|
+|HALF_UP|반올림|
+|HALF_EVEN|반올림 (반올림의 자리의 값이 짝수면 HALF_DOWN, 홀수면 HALF_UP)|
+|HALF_DOWN|반올림 (6이상 올림, 6미만 버림)|
+|UNNECESSARY|나눗셈의 결과가 딱 떨어지는 수가 아니면 ArithmeticException 예외 발생|
+
+#### java.math.MathContext
+이 클래스는 반올림 모드와 정밀도를 하나로 묶어 놓은 것일 뿐 별 다른 것은 없다.
+
+> ⚠️ 주의
+divide()에서는 scale이 소수점 이사의 자리수를 의미하는데, MathContext에서는 precision이 정수와 소수점 이하를 모두 포함한 자리수를 의미한다.
+
+#### scale의 변경
+
+BigDecimal을 10으로 곱하거나 나누는 대신에 scale의 값을 변경함으로 같은 결과를 낼 수 있다.
+scale의 값을 변경하려면 setScale()을 사용하면 된다.
