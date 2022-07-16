@@ -543,3 +543,35 @@ public Random() {
 |\\\\d{4}|4자리 숫자|
 
 위의 표대로 패턴을 만들어 그룹핑을 한 뒤, group()을 사용하여 그룹별로 출력 할 수 있다. group() 메서드에 매개변수 없이 호출하면 그룹핑되지 않은 채 분리되고, 매개변수로 1이상의 정수를 작성하면 그룹핑된 순서의 그룹을 출력한다. 단, 실제 그룹수보다 매개변수가 많으면 IndexOutOfBoundException을 호출한다.
+
+### java.util.Scanner 클래스
+Scanner는 화면, 파일, 문자열과 같은 입력소스로부터 문자데이터를 읽어오는데 도움을 준다. Scanner의 생성자부분은 다음과 같다.
+
+``` java
+Scanner(String source)
+Scanner(File source)
+Scanner(InputStream source)
+Scanner(Readable source)
+Scanner(ReadableByteChannel source)
+Scanner(Path source)
+```
+
+이렇게 다양한 생성자가 존재하여 입력 값으로 여러 타입을 받을 수 있다.
+
+또한 Scanner는 정규식 표현을 이용한 라인단위 검색을 지원하며 구분자에도 정규식 표현을 사용할 수 있어서 복잡한 형태의 구분자도 처리 가능하다.
+
+그리고 JDK1.6이후부터 Console 클래스가 추가가 되었는데 이 클래스는 특정 IDE에서 잘 작동되지 않는다는 이슈가 있다.
+
+``` java
+// JDK1.5 이전
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+String input = br.readLine();
+
+// JDK1.5 이후
+Scanner s = new Scanner(System.in);
+String input = s.nextLine();
+
+// JDK1.6이후
+Console console = System.console();
+String input = console.readLine();
+```
