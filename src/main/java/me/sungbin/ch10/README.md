@@ -58,3 +58,40 @@ roll(int field, int amount) 메서드도 add 메서드와 비슷한 기능이지
 DecimalFormat을 사용하는 방법은 인스턴스를 생성한 다음에 참조변수를 통하여 format 메서드를 호출하면 패턴에 맞는 문자열을 얻게 된다. 패턴은 생성자 파라미터로 넣는다.
 
 또한 parse 메서드를 통하여 기호와 문자가 포함된 문자열을 쉽게 숫자로 변환이 가능하다.
+
+### SimpleDateFormat
+Date와 Calendar 클래스만 가지고 날짜 데이터를 원하는 형태로 다양하게 출력하는 것은 불편하고 복잡하다. 이 점을 고려하여 SimpleDateFormat 클래스가 출범하게 되었다.
+
+> 💡 참고
+DateFormat은 추상클래스로 SimpleDateFormat 클래스의 상위 클래스이다. DateFormat는 추상클래스이므로 직접 인스턴스를 생성할 수 없고 getDateInstance() 메서드를 통하여 인스턴스를 반환해야한다. 반환된 인스턴스는 SimpleDateFormat 인스턴스이다.
+
+|기호|의미|
+|------|---|
+|G|연대 (BC, AD)|
+|y|년도|
+|M|월 (1~12 또는 1월~12월)|
+|w|년의 몇 번째 주(1~53)|
+|W|월의 몇 번째 주(1~5)|
+|D|년의 몇 번째 일 (1~366)|
+|d|월의 몇 번째 일 (1~31)|
+|F|월의 몇 번째 요일(1~5)|
+|E|요일|
+|a|오전/오후(AM,PM)|
+|H|시간(0~23)|
+|k|시간(1~24)|
+|K|시간(0~11)|
+|h|시간(1~12)|
+|m|분(0~59)|
+|s|초(0~59)|
+|S|천분의 일초(0~999)|
+|z|Time zone(General time zone)|
+|Z|Time zone(RFC 822 time zone)|
+|'|escape문자(특수문자를 표현하는데 사용)|
+
+SimpleDateFormat을 사용하는 방법은 간단하다. 먼저 원하는 출력형식의 패턴을 작성하여 SimpleDateFormat 인스턴스를 생성 후, 출력하고자 하는 Date 인스턴스를 가지고 format(Date d)를 호출하면 지정한 출력형식에 맞게 변환된 문자열을 얻게 된다.
+
+또한 parse(String source)를 사용하여 날짜 데이터를 출력형식을 변환하는 방법이 있다.
+
+> 💡 참고
+parse(String source)는 SimpleDateFormat의 상위 클래스인 DateFormat에 정의되어 있다.
+지정된 형식과 입력된 형식이 일치하지 않는 경우에는 예외가 발생함으로 적절히 예외처리가 필요하다.
