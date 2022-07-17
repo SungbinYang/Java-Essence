@@ -95,3 +95,10 @@ SimpleDateFormat을 사용하는 방법은 간단하다. 먼저 원하는 출력
 > 💡 참고
 parse(String source)는 SimpleDateFormat의 상위 클래스인 DateFormat에 정의되어 있다.
 지정된 형식과 입력된 형식이 일치하지 않는 경우에는 예외가 발생함으로 적절히 예외처리가 필요하다.
+
+### ChoiceFormat
+ChoiceFormat은 특정 범위에 속하는 값을 문자열로 변환해준다.
+
+ChoiceFormat 클래스는 파라미터로 limit와 변환할 문자열 배열이 들어가는데 limit은 double형 배열형으로 모두 오름차순으로 정렬되어야 하고 변환할 문자열 배열은 limit 배열의 개수와 일치해야한다. 그렇지 않으면 IllegalArgumentException이 발생한다.
+
+또한 pattern형으로 정의도 가능한데 패턴 구분자로 '#'과 '<'가 있는데 #은 경계값을 포함시키고 <은 경계값을 포함시키지 않는다.
