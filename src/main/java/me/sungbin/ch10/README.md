@@ -115,3 +115,58 @@ MessageFormat에 사용할 양식인 문자열 msg를 작성할 때, '{숫자}'�
 홑 따옴표(')는 MessageFormat의 양식에 escape문자로 사용되기 때문에 문자열 msg에서 홑 따옴표를 사용하려면 연속 2번 작성해야한다.
 
 또한 parse(String source)를 이용해서 출력된 데이터로부터 필요한 데이터만 뽑아낼 수 있다.
+
+## java.time 패키지
+Date와 Calendar 클래스의 단점들을 해소하기 위해 JDK1.8부터 java.time 패키지가 추가되었다.
+
+|패키지|설명|
+|------|---|
+|java.time|날짜와 시간을 다루는데 필요한 핵심 클래스들을 제공|
+|java.time.chrono|표준(ISO)이 아닌 달력 시스템을 위한 클래스들을 제공|
+|java.time.format|날짜와 시간을 파싱하고, 형식화하기 위한 클래스들을 제공|
+|java.time.temporal|날짜와 시간의 필드와 단위를 위한 클래스들을 제공|
+|java.time.zone|시간대와 관련된 클래스들을 제공|
+
+위의 패키지들에 속한 클래스들의 가장 큰 특징은 String 클래스처럼 불변이라는 것이다. 그래서 날짜와 시간을 변경하는 메서드들은 기존의 객체를 변경하는 것이 아니라 변경된 새로운 객체를 반환한다. 그런데 이 점에서 의문점이 들 수 있다. 새로운 객체를 반환하면 메모리 낭비가 심하지 않을까라는 생각을 할 수 있는데 기존의 객체를 변경하면 멀티쓰레드 환경이 안전하지 못한다는 점에서 이점이 있다.
+멀티쓰레드 환경에서는 동시에 여러 쓰레드가 같은 객체에 접근할 수 있기 때문에 변경 가능한 객체는 데이터가 잘못될 가능성이 있으며, 이를 쓰레드에 안전하지 않다고 한다.
+
+### java.time 패키지의 핵심 클래스
+날짜와 시간을 하나로 표현하는 Calendar 클래스와 달리 java.time 패키지에서는 날짜와 시간을 별도의 클래스로 분리해 놓았다. 시간을 표현할 때는 LocalTime 클래스를 사용하고 날짜를 표현할 때는 LocalDate 클래스를 사용하며, 둘 다 사용할 때는 LocalDateTime 클래스를 사용한다. 여기에 시간대까지 다뤄야 한다면 ZonedDateTime 클래스를 사용하면 된다.
+
+ZonedDateTime 클래스는 우리가 이전에 배운 Calendar 클래스와 유사하며 Date와 유사한 클래스로는 Instant 클래스가 있는데 이 클래스는 날짜와 시간을 초로 표현한다. 주로 이 클래스는 DB와 연동할 때 많이 사용된다.
+
+#### Period와 Duration
+날짜와 시간의 간격을 표현하기 위한 클래스도 있는데, Period 클래스는 두 날짜간의 차이를 표현하기 위한 것이고, Duration은 시간의 차이를 표현하기 위한 것이다.
+
+#### 객체 생성하기 - now(), of()
+java.time 패키지에 속한 클래스의 객체를 생성하는 가장 기본적인 방법은 now()와 of()를 사용하는 것이다.
+* now()는 현재 날짜와 시간을 저장하는 객체를 생성한다.
+
+  ``` java
+  LocalDateTime date = LocalDateTime.now();
+  ```
+* of()는 단순히 해당 필드의 값을 순서대로 지정해주기만 하면 된다.
+
+  ``` java
+  LocalDateTime date = LocalDateTime.of(2015, 11, 23, 23, 59, 59);
+  ```
+
+#### Temporal과 TemporalAmount
+LocalDate, LocalTime, LocalDateTime, ZonedDateTime등 날짜와 시간을 표현하기 위한 클래스들은 모두 Temporal, TemporalAccessor, TemporalAdjuster 인터페이스를 구현했고, Duration과 Period는 TemporalAmount 인터페이스를 구현하였다.
+
+> Temporal, TemporalAccessor, TemporalAdjuster를 구현한 클래스
+- LcoalDate, LocalTime, LocalDateTime, ZonedDateTime, instant등
+TemporalAmount를 구현한 클래스
+- Period, Duration
+
+#### TemporalUnit과 TemporalField
+날짜와 시간의 단위를 정의해 놓은 것이 TemporalUnit 인터페이스이고 이 인터페이스를 구현한 것이 enum형인 ChronoUnit이다. 그리고 TemporalField는 년, 월, 일등 날짜와 시간의 필드를 정의해 놓은 것으로, enum형인 ChronoField가 이 인터페이스를 구현하였다.
+
+날짜와 시간에서 특정 필드 값을 얻을 때는 get() 메서드를 사용하면 되고, 특정 날짜나 시간을 더하거나 뺄때는 plus(), minus()를 사용하면 된다.
+
+``` java
+LocalDate tomorrow = LocalDate.now().plus(1, ChronoUnit.DAYS);
+LocalDate tomorrow = LocalDate.now().plusDays(1);
+```
+
+또한 TemporalField나 TemporalUnit을 사용할 수 있는 지 확인 하는 메서드는 isSupported()를 사용하면 된다.
