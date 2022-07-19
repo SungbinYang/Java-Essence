@@ -552,3 +552,5 @@ W
 'src/main/java/me/sungbin/ch10/data4.txt,c/8/c896e59a4f56f452bf9bbf089f7ddfda2c7d1b00
 c
 3src/main/java/me/sungbin/ch10/MessageFormatEx4.java,1/9/19ca98c706646ab1c3b7a43d4d06f191e2527999
+W
+'src/main/java/me/sungbin/ch10/README.md,c/4/c48d949773da5c6703e5361bba763adad244ae42
