@@ -32,6 +32,6 @@ public class CalendarEx2 {
     }
 
     public static String toString(Calendar date) {
-        return date.get(Calendar.YEAR) + "년 " + (date.get(Calendar.MONTH) + 1) + "월 " + date.get(Calendar.DATE) + "일";
+        return date.get(Calendar.YEAR) + "년 " + (date.get(Calendar.MONTH) + 1) + "월 " + date.get(Calendar.DATE) + "일 ";
     }
 }
