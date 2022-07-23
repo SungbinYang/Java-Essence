@@ -382,3 +382,42 @@ OffsetDateTime toOffsetDateTime()
 long toEpochSecond()
 Instant toInstant()
 ```
+
+### TemporalAdjusters
+앞서 plus(), minus()와 같은 메서드로 날짜와 시간을 계산할 수 있다는 것을 배웠다. 하지만, 지난주 토요일이 몇일인지 이 달의 3째주 금요일이 몇일인지등 날짜계산을 하기엔 불편하다. 그래서 자주 쓰일만한 날짜 계산들을 대신 해주는 메서드를 정의해놓은 것이 TemporalAdjusters 클래스이다.
+
+|메서드|설명|
+|------|---|
+|firstDayOfNextYear()|다음 해의 첫 날|
+|firstDayIfNextMonth()|다음 달의 첫 날|
+|firstDayOfYear()|올 해의 첫 날|
+|firstDayOfMonth()|이번 달의 첫 날|
+|lastDayOfYear()|올 해의 마지막 날|
+|lastDayOfMonth()|이번 달의 마지막 날|
+|firstInMonth(DayOfWeek dayOfWeek)|이번 달의 첫 번째 ?요일|
+|lastInMonth(DayOfWeek dayOfWeek)|이번 달의 마지막 ?요일|
+|previous(DayOfWeek dayOfWeek)|지난 ?요일(당일 미포함)|
+|previousOrSame(DayOfWeek dayOfWeek)|지난 ?요일(당일 포함)|
+|next(DayOfWeek dayOfWeek)|다음 ?요일(당일 미포함)|
+|nextOrSame(DayOfWeek dayOfWeek)|다음 ?요일(당일 포함)|
+|dayOfWeekInMonth(int ordinal, DayOfWeek dayOfWeek)|이번 달의 n번째 ?요일|
+
+#### TemporalAdjuster 직접 구현하기
+보통은 TemporalAdjusters에 정의된 메서드로 충분하겠지만, 필요하면 자주 사용되는 날짜 계산을 해주는 메서드를 직접 만들 수 있다.
+
+LocalDate의 with()는 TemporalAdjuster 인터페이스를 구현한 클래스의 객체를 매개변수로 제공해야한다.
+
+``` java
+LocalDate with(TemporalAdjuster adjutster)
+```
+
+그러면 좀 더 구체적으로 TemporalAdjuster 인터페이스 구현이 어떻게 되었는지 살펴보자.
+
+``` java
+@FunctionalInterface
+public interface TemporalAdjuster {
+	Temporal adjustInto(Temporal temporal);
+}
+```
+
+실제로 TemporalAdjuster를 구현하면 구현해야하는 것은 adjustInto()지만, 우리가 TemporalAdjuster와 같이 사용하는 메서드는 with()이다. 이 중에 어느것을 사용해도 되지만, adjustInto()는 내부적으로만 사용할 의도로 작성된 것이기 때문에 with()를 사용하면 된다.
