@@ -298,3 +298,23 @@ boolean isEqual(ChronoLocalDate other)
 ```
 
 물론 LocalDate와 LocalTime에는 equal() 메서드가 있지만 isEqual()을 제공하는 이유는 연표가 다른 두 날짜를 비교하기 위해서이다. 모든 필드를 일치하는지 알고 싶을때는 equal() 메서드를 사용하고 오직 날짜만 비교하고 싶을 때는 isEqual() 메서드를 사용한다.
+
+### Instant
+Instant 클래스는 에포크 타임부터 경과된 시간을 나노초 단위로 표현한다.
+
+Instant를 생성할 때는 now()와 ofEpochSecond()를 사용한다.
+
+``` java
+long epochSec = Instant.now().getEpochSecond();
+int nano = Instant.now().getNano();
+```
+
+Instant는 항상 UTC를 기준으로 하기 때문에 LocalTime과 차이가 있을 수 있다. 시간대를 고려할 때는 OffsetDateTime을 사용하는 것이 좋은 선택이다.
+
+#### Instant와 Date간의 변환
+Instant는 기존의 java.util.Date를 대체하기 위한것으로 JDK1.8부터 Date에 Instant로 변환할 수 있는 새로운 메서드가 추가되었다.
+
+``` java
+static Date from(Instant instant) // Instant -> Date
+Instant toInstant() // Date -> Instant
+```
