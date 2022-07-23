@@ -318,3 +318,67 @@ Instant는 기존의 java.util.Date를 대체하기 위한것으로 JDK1.8부터
 static Date from(Instant instant) // Instant -> Date
 Instant toInstant() // Date -> Instant
 ```
+
+### LocalDateTime과 ZonedDateTime
+LocalDate와 LocalTime을 합쳐 놓은 것이 LocalDateTime이고, LocalDateTime에 시간대를 추가하는 것이 ZonedDateTime이다.
+
+#### LocalDate와 LocalTime으로 LocalDateTime 만들기
+LocalDate와 LocalTime으로 합쳐서 하나의 LocalDateTime을 만들 수 있다. 대표적인 방법을 아래의 코드를 통해 살펴보자.
+
+``` java
+LocalDate date = LocalDate.of(2022, 7, 30);
+LocalTime time = LocalTime.of(12,34,56);
+
+LocalDateTime dt = LocalDateTime.of(date, time);
+```
+
+물론 LocalDateTime에도 날짜와 시간을 직접 지정할 수 있는 다양한 버전의 of()와 now()가 정의되어 있다.
+
+``` java
+LocalDateTime dateTime = LocalDateTime.of(2022, 7, 12, 12, 34, 56);
+LocalDateTime today = LocalDateTime.now();
+```
+
+#### LocalDateTime의 변환
+반대로 LocalDateTime을 LocalDate 또는 LocalTime으로 변환할 수 있다.
+
+``` java
+LocalDateTime dateTime = LocalDateTime.of(2022, 7, 12, 12, 34, 56);
+
+LocalDate date = dt.toLocalDate();
+LocalTime time = dt.toLocalTime();
+```
+
+#### LocalDateTime으로 ZonedDateTime 만들기
+LocalDateTime에 시간대를 추가하면 ZonedDateTime이 된다. 기존에는 TimeZone 클래스로 시간대를 다뤘지만 새로운 패키지에서는 ZoneId라는 클래스를 사용한다. ZoneId는 일정 절약시간을 자동적으로 처리해줌으로 더 편리하다.
+LocalDate에 시간정보를 추가하는 atTime()을 쓰면 LocalDateTime을 얻을 수 있는 것처럼 LocalDateTime에 atZone()으로 시간대 정보를 추가하면 ZonedDateTime을 얻을 수 있다.
+
+LocalDate에 atStartOfDay()라는 메서드가 있는데 이 메서드에 매개변수로 ZoneId를 지정해도 ZonedDateTime을 얻을 수 있다.
+
+#### ZoneOffset
+UTC부로부터 얼마만큼 떨어져 있는지를 ZoneOffset으로 표현한다.
+
+#### OffsetDateTime
+ZonedDateTime은 ZoneId로 구역을 표현하는데 ZoneId가 아닌 ZoneOffset을 사용하는 것이 OffsetDateTime이다. ZoneId는 일광절역시간처럼 시간대와 관련된 규칙들을 포함하고 있는데, ZoneOffset은 단지 시간대를 시간의 차이로만 구분한다. 같은 지역 내의 컴퓨터 간에 데이터를 주고받을 때는 전송시간을 표현하기엔 LocalDateTime이며, 충분하지만, 서로 다른 시간대에 존재하는 컴퓨터간의 통신에는 OffsetDateTime이 필요하다.
+
+``` java
+ZonedDateTime zdt = ZonedDateTime.of(date, time, zid);
+OffsetDateTime odt = OffsetDateTime.of(date, time, krOffset);
+
+// ZonedDateTime -> OffsetDateTime
+OffsetDateTime odt = zdt.toOffsetDateTime();
+```
+
+OffsetDateTime은 ZonedDateTime처럼, LocalDate와 LocalTime에 ZoneOffset을 더하거나, ZonedDateTime에 toOffsetDateTime()을 호출해서 얻을 수 있다.
+
+#### ZonedDateTime 변환
+ZoneDateTime도 LocalDateTime처럼 날짜와 시간에 관련된 다른 클래스로 변환하는 메서들을 가지고 있다.
+
+``` java
+LocalDate toLocalDate()
+LocalTime toLocalTime()
+LocalDateTime toLocalDateTime()
+OffsetDateTime toOffsetDateTime()
+long toEpochSecond()
+Instant toInstant()
+```
