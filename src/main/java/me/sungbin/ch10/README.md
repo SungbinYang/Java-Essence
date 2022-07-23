@@ -170,3 +170,131 @@ LocalDate tomorrow = LocalDate.now().plusDays(1);
 ```
 
 또한 TemporalField나 TemporalUnit을 사용할 수 있는 지 확인 하는 메서드는 isSupported()를 사용하면 된다.
+
+### LocalDate와 LocalTime
+LocalDate와 LocalTime은 java.time 패키지의 가장 기본이 되는 클래스이고 나머지 클래스들은 이들의 확장이다.
+객체를 생성하는 방법은 현재 날짜와 시간을 LocalDate와 LocalTime으로 반환하는 now() 메서드와 지정된 날짜와 시간으로 LocalDate와 LocalTime 객체를 생성하는 of() 메서드가 있으며 둘다 static 메서드다.
+
+LocalDate와 LocalTime 클래스들은 일단위나 초단위로도 지정이 가능하다.
+
+``` java
+LocalDate birthDate = LocalDate.ofYearDay(1999, 365); // 1999년 12월 31일
+LcoalTime birthTime = LocalTime.ofSecondDay(86399); // 23시 59분 59초
+```
+
+또는 parse() 메서드를 통하여 문자열을 날짜와 시간으로 변환이 가능하다.
+
+``` java
+LocalDate birthDate = LocalDate.parse("1999-12-31");
+LocalTime birthTime = LocalTime.parse("23:59:59");
+```
+
+#### 특정 필드의 값 가져오기 - get(), getXXX()
+
+|클래스|메서드|설명|
+|------|---|---|
+|LocalDate|int getYear()|년도(2022)|
+|LocalDate|int getMonthValue()|월(12)|
+|LocalDate|Month getMonth()|월(DECEMBER)|
+|LocalDate|int getDayOfMonth()|일(31)|
+|LocalDate|int getDayOfYear()|같은 해의 1월 1일부터 몇번째 일|
+|LocalDate|DayOfWeek getDayOfWeek()|요일(SUNDAY)|
+|LocalDate|int lengthOfMonth()|같은 달의 총 일수(31)|
+|LocalDate|int lengthOfYear()|같은 해의 총 일수(365), 윤년이면 366|
+|LocalDate|boolean isLeapYear()|윤년여부 확인|
+|LocalTime|int getHour()|시|
+|LocalTime|int getMinute()|분|
+|LocalTime|int getSecond()|초|
+|LocalTime|int getNano()|나노초|
+
+위의 표의 메서들의 매개변수로 사용할 수 있는 목록은 아래와 같다.
+
+|TemporalField(ChronoField)|성명|
+|------|---|
+|ERA|시대|
+|YEAR_OF_ERA, YEAR|년|
+|MONTH_OF_YEAR|월|
+|DAY_OF_WEEK|요일|
+|DAY_OF_MONTH|일|
+|AMPM_OF_DAY|오전/오후|
+|HOUR_OF_DAY|시간(0~23)|
+|CLOCK_HOUR_OF_DAY|시간(1~24)|
+|HOUR_OF_AMPM|시간(0~11)|
+|CLOCK_HOUR_OF_AMPM|시간(1~12)|
+|MINUTE_OF_HOUR|분|
+|SECOND_OF_MINUTE|초|
+|MILLI_OF_SECOND|천분의 일초|
+|MICRO_OF_SECOND|백만분의 일초|
+|NANO_OF_SECOND|10억분의 일초|
+|DAY_OF_YEAR|그 해의 몇번째 날|
+|EPOCH_DAY|EPOCH(1970.1.1)부터 몇번째 날|
+|MINUTE_OF_DAY|그 날의 몇번째 분 (시간을 분으로 확산)|
+|SECOND_OF_DAY|그 날의 몇번째 초 (시간을 초로 환산)|
+|MILLI_OF_DAY|그 날의 몇번째 밀리초|
+|MICRO_OF_DAY|그 날의 몇번째 마이크로초|
+|NANO_OF_DAY|그 날의 몇번째 나노초|
+|ALIGNED_WEEK_OF_MONTH|그 달의 n번째 주|
+|ALIGNED_WEEK_OF_YEAR|그 해의 n번째 주|
+|ALIGNED_DAY_OF_WEEK_IN_MONTH|요일 (그 달의 1일을 월요일로 간주하여 계산)|
+|ALIGNED_DAY_OF_WEEK_IN_YEAR|요일 (그 해의 1월 2일을 월요일로 간주하여 계산)|
+|INSTANT_SECONDS|년월일을 초단위로 환산 Instant에만 사용|
+|OFFSET_SECONDS|UTC와의 시차. ZoneOffset에만 사용가능|
+|PROLEPTIC_MONTH|년월을 월단위로 환산|
+
+이 목록은 ChronoField에 정의된 모든 상수를 표현한것이고 클래스마다 사용가능한 상수가 다르다.
+
+> 만일 해당 클래스가 지원하지 않는 필드를 사용하면 UnsupportedTemporalTypeException이 발생한다.
+
+#### 필드 값 변경하기 - with(), plus(), minus()
+날짜와 시간에서 특정 필드 값을 변경하려면 with으로 시작하는 메서드를 사용하면 된다. with으로 시작하는 메서드는 다음과 같다.
+
+``` java
+LocalDate withYear(int year);
+LocalDate withMonth(int month);
+LocalDate withDayOfMonth(int dayOfMonth);
+LocalDate withDayOfYear(int dayOfYear);
+
+LocalTime withHour(int hour);
+LocalTime withMinute(int minute);
+LocalTime withSecond(int second);
+LocalTime withNano(int nanoSecond);
+```
+
+또한 with() 메서드를 통하여 직접 필드를 지정이 가능하다. 여기서 주의할 점은 필드를 변경하는 메서드들은 항상 새로운 객체를 생성해서 반환하므로 대입 연산자를 같이 사용해야한다.
+
+이 외에도 특정 필드에 값을 더하거나 빼는 plus()와 minus()가 있다.
+
+그리고 LocalTime의 truncatedTo() 메서드는 지정된 것보다 작은 단위의 필드를 0으로 만든다.
+
+그런데 LocalTime과 달리 LocalDate에는 truncatedTo()가 없는데, 그 이유는 LocalDate의 필드인 년, 월, 일은 0이 될 수 없기 때문이다. 그리고 이 메서드의 매개변수로 아래의 표중에 시간과 관련된 필드만 사용가능하다.
+
+|TemporalUnit(ChronoUnit)|설명|
+|------|---|
+|FOREVER|Long.MAX_VALUE초(약 3천억년)|
+|ERAS|1,000,000,000년|
+|MILLENNIA|1,000년|
+|CENTURIES|100년|
+|DECADES|10년|
+|YEARS|년|
+|MONTHS|월|
+|WEEKS|주|
+|DAYS|일|
+|HALF_DAYS|반나절|
+|HOURS|시|
+|MINUTES|분|
+|SECONDS|초|
+|MILLIS|천분의 일초|
+|MICROS|백만분의 일초|
+|NANOS|10억분의 일초|
+
+#### 날짜와 시간의 비교 - isAfter(), isBefore(), isEqual()
+
+LocalDate와 LocalTime 클래스도 compareTo()가 적절히 오버라이딩되어 있어서 쉽게 비교가 가능하지만 더 편라힌 메서드들도 추가되었다.
+
+``` java
+boolean isAfter(ChronoLocalDate other)
+boolean isBefore(ChronoLocalDate other)
+boolean isEqual(ChronoLocalDate other)
+```
+
+물론 LocalDate와 LocalTime에는 equal() 메서드가 있지만 isEqual()을 제공하는 이유는 연표가 다른 두 날짜를 비교하기 위해서이다. 모든 필드를 일치하는지 알고 싶을때는 equal() 메서드를 사용하고 오직 날짜만 비교하고 싶을 때는 isEqual() 메서드를 사용한다.
