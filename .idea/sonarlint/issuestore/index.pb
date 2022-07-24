@@ -552,8 +552,6 @@ c
 3src/main/java/me/sungbin/ch10/MessageFormatEx3.java,f/e/fef88ad3762022cae73dfa1376dab636c2efa68e
 ]
 -src/main/java/me/sungbin/ch10/NewTimeEx1.java,a/d/add5a95193184a2ac6c1f65f50276c467a7daff0
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ]
 -src/main/java/me/sungbin/ch10/NewTimeEx2.java,6/e/6ebedc5181d6cdbe7fec24136dec1cdc9eaf0aa7
 ]

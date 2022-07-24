@@ -513,3 +513,100 @@ pe = Period.of(1, 13, 32).normalized(); // 2년 1개월 32일
 |Duration|long toMinutes()|분단위로 변환해서 반환|
 |Duration|long toMillis()|천분의 일초 단위로 변환해서 반환|
 |Duration|long toNanos()|나노초 단위로 변환해서 반환|
+
+### 파싱과 포맷
+날짜와 시간을 원하는 형식으로 출력하고 파싱하는 방법을 알아보자.
+형식화와 관련된 클래스들은 java.time.format 패키지에 들어있는데 이 중에 DateTimeFormatter가 핵심이다.
+
+``` java
+LocalDate date = LocalDate.of(2016, 1, 12);
+String year = DateTimeFormatter.ISO_LOCAL_DATE.format(date);
+String year = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
+```
+
+날짜와 시간을 형식화하기위해서 format이라는 메서드가 사용되는데 DateTimeFormatter에만 해당되는게 아니라 LocalDate나 LocalTime같은 클래스에도 해당이 된다. 그럼 format 메서드에 사용되는 상수를 알아보자.
+
+|DateTimeFormatter|설명|
+|------|---|
+|ISO_DATE_TIME|Date and time with ZoneId|
+|ISO_LOCAL_DATE|ISO Local Date|
+|ISO_LOCAL_TIME|Time without offset|
+|ISO_LOCAL_DATE_TIME|ISO Local Date and Time|
+|ISO_OFFSET_DATE|ISO Date with offset|
+|ISO_OFFSET_TIME|Time with offset|
+|ISO_OFFSET_DATE_TIME|Date Time with Offset|
+|ISO_ZONED_DATE_TIME|Zoned Date Time|
+|ISO_INSTANT|Date and Time of an Instant|
+|BASIC_ISO_DATE|Basic ISO date|
+|ISO_DATE|ISO Date with or without offset|
+|ISO_TIME|Time with or without offset|
+|ISO_ORDINAL_DATE|Year and day of year|
+|ISO_WEEK_DATE|Year and Week|
+|RFC_1123_DATE_TIME|RFC 1123 / RFC 822|
+
+#### 로케일에 종속된 형식화
+DateTimeFormatter의 static 메서드 ofLocalizedDate(), ofLocalizedTime(), ofLocalizedDateTime()은 로케일에 종속적인 포맷터를 생성한다.
+
+``` java
+DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+
+String shortFormat = formatter.format(LocalDate.now());
+```
+
+FormatStyle의 종류에 따른 출력 형태는 다음과 같다.
+
+|FormatStyle|날짜|시간|
+|------|---|---|
+|FULL|2015년 11월 28일 토요일|N/A|
+|LONG|2015년 11월 28일(토)|오후 9시 15분 31초|
+|MEDIUM|2015.11.28|오후 9:15:13|
+|SHORT|15.11.28|오후 9:15|
+
+#### 출력형식 직접 정의하기
+DateTimeFormatter의 ofPattern()으로 원하는 출력형식을 직접 작성이 가능하다.
+
+``` java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+```
+
+출력 형식에 사용되는 기호의 목록은 다음과 같다.
+
+|기호|의미|
+|------|---|
+|G|연대 (BC, AD)|
+|y 또는 u|년도|
+|M 또는 L|월 (1~12 또는 1월~12월)|
+|Q 또는 q|분기|
+|w|년의 몇번째 주|
+|W|월의 몇번째 주|
+|D|년의 몇번째 일|
+|d|월의 몇번째 일|
+|F|월의 몇번째 요일|
+|E 또는 e|요일|
+|a|오전/오후(AM, PM)|
+|H|시간(0~23)|
+|k|시간(1~24)|
+|K|시간(0~11)|
+|h|시간(1~12)|
+|m|분(0~59)|
+|s|초(0~59)|
+|S|천분의 일초(0~999)|
+|A|천분의 일초(그 날의 0시 0분 0초 부터의 시간)|
+|n|나노초(0~999999999)|
+|N|나노초(그 날의 0시 0분 0초 부터의 시간)|
+|V|시간대 ID(VV)|
+|z|시간대 이름|
+|O|지역화된 zone-offset|
+|Z|zone-offset|
+|X 또는 x|zone-offset(Z는 +00:00를 의미)|
+|'|escape문자|
+
+#### 문자열을 날짜와 시간으로 파싱하기
+문자열을 날짜 또는 시간으로 변환하려면 static 메서드 parse()를 사용하면 된다.
+
+``` java
+static LocalDateTime parse(CharSequence text)
+static LocaldateTime parse(CharSequence text, DateTimeFormatter formatter)
+```
+
+자주 사용되는 기본적인 형식의 문자열은 ISO_LOCAL_DATE와 같은 형식화 상수를 사용하지 않고도 파싱이 가능하다.
