@@ -421,3 +421,95 @@ public interface TemporalAdjuster {
 ```
 
 실제로 TemporalAdjuster를 구현하면 구현해야하는 것은 adjustInto()지만, 우리가 TemporalAdjuster와 같이 사용하는 메서드는 with()이다. 이 중에 어느것을 사용해도 되지만, adjustInto()는 내부적으로만 사용할 의도로 작성된 것이기 때문에 with()를 사용하면 된다.
+
+### Period와 Duration
+Period는 날짜의 차이를, Duration은 시간의 차이를 계산하기 위한 것이다.
+
+#### between()
+두 날짜의 차이를 나타내는 Period는 between() 메서드를 통해 구할 수 있다.
+
+``` java
+LocalDate date1 = LocalDate.of(2022, 1, 1);
+LocalDate date2 = LocalDate.of(2023, 12, 31);
+
+Period pe = Period.between(date1, date2);
+```
+
+date1이 date2보다 날짜 상으로 이전이면 양수로, 이후면 음수로 Period에 저장한다.
+그리고 시간 차이를 구할 때는 Duration을 사용한다는 것을 제외하고 Period와 같다.
+
+``` java
+LocalTime time1 = LocalTime.of(0, 0, 0);
+LocalTime time2 = LocalTime.of(12,34,56);
+
+Duration du = Duration.between(time1, time2);
+```
+
+Period, Duration에서 특정 필드 값을 얻을 때는 get()을 사용한다.
+
+``` java
+long year = pe.get(ChronoUnit.YEARS); // int getYears()
+long month = pe.get(ChronoUnit.MONTHS); // int getMonths()
+long day = pe.get(ChronoUnit.DAYS) // int getDays()
+
+long sec = du.get(ChronoUnit.SECONDS) // long getSeconds()
+int nano = du.get(ChronoUnit.NANOS) // int getNano()
+```
+
+여기서 알아둬야 할 사실은 Period와 달리 Duration에는 getHours(), getMinutes() 메서드가 존재하지 않는다.
+
+그러면 여기서 불편한 것들이 나온다. Duration에는 getHours(), getMinutes() 메서드가 존재하지 않기 때문에 상수를 통하여 직접 명시를 해야한다. 이 방법은 개발자에 따라 오타가 날 수도 있고 실수에 여지가 있을 수도 있기 때문에 Duration을 LocalTime으로 변환 후, LocalTime의 get() 메서드를 사용함으로 비교적 쉽게 풀 수가 있다.
+
+``` java
+LocalTime tmpTime = LocalTime.of(0, 0).plusSeconds(du.getSeconds());
+
+int hour = tmpTime.getHour();
+int min = tmpTime.getMinute();
+int sec = tmpTime.getSecond();
+int nano = du.getNano();
+```
+
+#### between()과 until()
+between()과 until() 메서드는 거의 같은 기능을 하고 유일한 차이라면 between() 메서드는 static 메서드이고 until() 메서드는 인스턴스 메서드라는 것이다.
+
+Period는 년월일을 분리해서 저장하기 때문에 D-day를 구하려는 경우 같은 경우 두 개의 매개변수를 받는 until()을 사용하는 것이 낫다.
+
+#### of(), with()
+Period에는 of(), ofYear(), ofMonths(), ofWeeks(), ofDays()가 있고, Duration에는 of(), ofDays(), ofHours(), ofMinutes(), ofSeconds()등이 있다.
+
+또한 특정 필드의 값을 변경하는 with()도 존재한다.
+
+사용방법은 LocalDate, LocalTime에서 쓰는 것과 동일하다.
+
+#### 사칙연산, 비교연산, 기타 메서드
+plus(), minus()외에 곱셈과 나눗셈을 위한 메서드도 있다.
+
+``` java
+pe = pe.minusYear(1).multipliedBy(2); // 1년을 빼고 2배를 곱한다.
+du = du.plusHours(1).dividedBy(60); // 1시간을 더하고 60으로 나눈다.
+```
+
+> Period에 나눗셈을 위한 메서드는 따로 존재하지 않는다.
+
+그리고 음수인지 아닌지 확인하는 isNegative()와 0인지 확인하는 isZero()가 있다.
+
+또한 부호를 반대로 변경하는 negate()와 부호를 없애는 abs()가 있다.
+
+또한 Period에 normalized()라는 메서드가 존재하는데 이 메서드는 월의 값이 12를 넘지 않게 조정을 해준다. 만약 넘는다면 연수를 증가시켜서 변환해준다. 단, 일수는 월마다 다르므로 조절하지 않는다.
+
+``` java
+pe = Period.of(1, 13, 32).normalized(); // 2년 1개월 32일 
+```
+
+#### 다른 단위로 변환 - toTotalMonths(), toDays(), toHours(), toMinutes()
+
+이 메서드들은 Period와 Duration을 다른 단위의 값으로 변환하는데 사용한다. get()은 특정 필드의 값을 그대로 가져오는 것이지만, 아래의 메서드들은 특정 단위로 결과를 반환한다는 차이가 있다.
+
+|클래스|메서드|설명|
+|------|---|---|
+|Period|long toTotalMonths()|년월일을 월단위로 변환해서 반환 (일 단위는 무시)|
+|Duration|long toDays()|일단위로 변환해서 반환|
+|Duration|long toHours()|시간단위로 변환해서 반환|
+|Duration|long toMinutes()|분단위로 변환해서 반환|
+|Duration|long toMillis()|천분의 일초 단위로 변환해서 반환|
+|Duration|long toNanos()|나노초 단위로 변환해서 반환|

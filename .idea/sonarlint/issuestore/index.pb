@@ -538,3 +538,23 @@ c
 0src/main/java/me/sungbin/ch10/DateFormatEx2.java,a/c/ac98d2c1981fec61501fdb347affd5c460eb7068
 `
 0src/main/java/me/sungbin/ch10/DateFormatEx3.java,e/0/e051ec921484d2d4e3c26e33aca0d30381c342c2
+b
+2src/main/java/me/sungbin/ch10/ChoiceFormatEx1.java,c/c/cc81391701b09a347ba6d4933cb13a60f61d6e5b
+b
+2src/main/java/me/sungbin/ch10/ChoiceFormatEx2.java,f/2/f2f88f9e42ec54d6b5df6cae0955076516bef877
+c
+3src/main/java/me/sungbin/ch10/MessageFormatEx1.java,c/1/c1d1c2feae9eb4ac44791c6d9a85e78deb05e561
+c
+3src/main/java/me/sungbin/ch10/MessageFormatEx2.java,e/2/e276efc4c613f30366d8b6b2718c202f2440f607
+c
+3src/main/java/me/sungbin/ch10/MessageFormatEx4.java,1/9/19ca98c706646ab1c3b7a43d4d06f191e2527999
+c
+3src/main/java/me/sungbin/ch10/MessageFormatEx3.java,f/e/fef88ad3762022cae73dfa1376dab636c2efa68e
+]
+-src/main/java/me/sungbin/ch10/NewTimeEx1.java,a/d/add5a95193184a2ac6c1f65f50276c467a7daff0
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+]
+-src/main/java/me/sungbin/ch10/NewTimeEx2.java,6/e/6ebedc5181d6cdbe7fec24136dec1cdc9eaf0aa7
+]
+-src/main/java/me/sungbin/ch10/NewTimeEx3.java,3/0/300cc7e8e01db16d4ee2005970033aec56d5a0c3
