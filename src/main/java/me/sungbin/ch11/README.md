@@ -112,3 +112,44 @@ Map에 저장되는 key-value 쌍을 다루기 위해 내부적으로 Entry 인�
 |Object getValue()|Entry의 value 객체를 반환한다.|
 |int hashCode()|Entry의 해시코드를 반환한다.|
 |Object setValue(Object value)|Entry의 value객체를 지정된 객체로 바꾼다.|
+
+### ArrayList
+ArrayList는  컬렉션 프레임워크에서 가장 많이 사용되는 컬렉션 클래스이다. List를 구현하기 때문에 데이터의 저장순서도 저장이 되고, 중복을 허용한다. 또한 ArrayList는 기존의 Vector 클래스를 개선한것이여서 기존의 Vector클래스의 구현원리와 기능적인 측면은 동일하다. 또한 ArrayList는 데이터를 저장할 때 Object 배열을 이용해서 데이터를 순차적으로 저장한다. 그리고 저장공간이 다 차면 그것보다 더 큰 새로운 배열을 생성 후, 기존의 배열을 복사하여 저장한다.
+
+|메서드|설명|
+|------|---|
+|ArrayList()|크기가 10인 ArrayList를 생성|
+|ArrayList(Collection c)|주어진 컬렉션이 저장된 ArrayList 생성|
+|ArrayList(int initialCapacity)|지정된 초기용량을 갖는 ArrayList를 생성|
+|boolean add(Object o)|ArrayList의 마지막에 객체를 추가. 성공하면 true|
+|void add(int index, Object element)|지정된 위치(index)에 객체를 저장|
+|boolean addAll(Collection c)|주어진 컬렉션의 모든 객체를 저장한다.|
+|boolean addAll(int index, Collection c)|지정된 위치부터 주어진 컬렉션의 모든 객체를 저장한다.|
+|void clear()|ArrayList를 완전히 비운다.|
+|Object clone()|ArrayList를 복제한다.|
+|boolean contains(Object o)|지정된 객체(o)가 ArrayList에 포함되어 있는지 확인|
+|void ensureCapacity(int minCapacity)|ArrayList의 용량이 최소한 minCapacity가 되도록 한다.|
+|Object get(int index)|지정된 위치(index)에 저장된 객체를 반환한다.|
+|int indexOf(Object o)|지정된 객체가 저장된 위치를 찾아 반환한다.|
+|boolean isEmpty()|ArrayList가 비어있는지 확인한다.|
+|Iterator iterator()|ArrayList의 Iterator 객체를 반환한다.|
+|int lastIndexOf(Object o)|객체(o)가 저장된 위치를 끝부터 역방향으로 검색해서 반환|
+|ListIterator listIterator()|ArrayList의 ListIterator를 반환|
+|ListIteraotr listIterator(int index)|ArrayList의 지정된 위치부터 시작하는 ListIterator를 반환|
+|Object remove(int index)|지정된 위치 (index)에 있는 객체를 제거한다.|
+|boolean remove(Object o)|지정한 객체를 제거한다. (성공하면 true, 실패하면 false)|
+|boolean removeAll(Collection c)|지정한 컬렉션에 저장된 것과 동일한 객체들을 ArrayList에서 제거한다.|
+|boolean retainAll(Collection c)|ArrayList에 저장된 객체 중에서 주어진 컬렉션과 공통된 것들만을 남기고 나머지는 삭제한다.|
+|Object set(int index, Object element)|주어진 객체(element)를 지정된 위치(index)에 저장한다.|
+|int size()|ArrayList에 저장된 객체의 개수를 반환한다.|
+|void sort(Comparator c)|지정된 정렬기준(c)으로 ArrayList를 정렬|
+|List subList(int fromIndex, int toIndex)|fromIndex부터 toIndex사이에 저장된 객체를 반환한다.|
+|Object[] toArray()|ArrayList에 저장된 모든 객체들을 객체배열로 반환한다.|
+|Object[] toArray(Object[] a)|ArrayList에 저장된 모든 객체들을 객체배열 a에 담아 반환한다.|
+|void trimToSize()|용량을 크기에 맞게 줄인다. (빈 공간을 없앤다.)|
+
+ArrayList를 생성할 때 저장할 요소의 개수를 고려해서 실제 저장할 개수보다 약간 여유있는 크기로 하는 것이 좋다. 생성할 때 지정한 크기보다 더 많은 객체를 저장하면 자동적으로 크기가 증가하지만 이 과정에 시간이 소요되기 때문이다.
+
+ArrayList나 Vector 같이 배열을 이용한 자료구조는 데이터를 읽어오고 저장하는데는 효율이 좋지만 용량을 변경해야할 때는 새로운 배열을 생성한 후 기존의 배열로부터 새로 생성된 배열로 데이터를 복사해야하기 때문에 상당히 효율이 떨어진다는 단점을 가지고 있다.
+
+> 인터페이스를 구현할 때 인터페이스에 정의된 모든 메서드를 구현해야 한다. 일부 메서드만 구현했다면 추상클래스로 선언해야한다. 그러나 JDK1.8부터 List 인터페이스에 3개의 디폴트 메서드가 추가되어서 이 들은 구현하지 않아도 된다.
