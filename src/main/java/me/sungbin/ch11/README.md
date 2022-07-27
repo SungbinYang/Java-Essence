@@ -153,3 +153,100 @@ ArrayList를 생성할 때 저장할 요소의 개수를 고려해서 실제 저
 ArrayList나 Vector 같이 배열을 이용한 자료구조는 데이터를 읽어오고 저장하는데는 효율이 좋지만 용량을 변경해야할 때는 새로운 배열을 생성한 후 기존의 배열로부터 새로 생성된 배열로 데이터를 복사해야하기 때문에 상당히 효율이 떨어진다는 단점을 가지고 있다.
 
 > 인터페이스를 구현할 때 인터페이스에 정의된 모든 메서드를 구현해야 한다. 일부 메서드만 구현했다면 추상클래스로 선언해야한다. 그러나 JDK1.8부터 List 인터페이스에 3개의 디폴트 메서드가 추가되어서 이 들은 구현하지 않아도 된다.
+
+### LinkedList
+배배열은 가장 기본적인 형태의 자료구조며, 구조가 간단하며 사용하기 쉽고 데이터를 읽어오는데 걸리는 시간이 빠르다. 하지만 아래와 같은 단점을 가지고 있다.
+
+> 1. 크기를 변경할 수 없다.
+     - 크기를 변경할 수 없으므로 새로운 배열을 생성해서 데이터를 복사해야한다.
+     - 실행속도를 향상시키기 위해서는 충분히 큰 크기의 배열을 생성해야 하므로 메모리가 낭비된다.
+2. 비순차적인 데이터의 추가 또는 삭제에 시간이 많이 걸린다.
+    - 차례대로 데이터를 추가하고 마지막에서부터 데이터를 삭제하는 것은 빠르지만
+    - 배열의 중간에 데이터를 추가하려면, 빈자리를 만들기 위해 다른 데이터들을 복사해서 이동해야한다.
+
+이러한 배열의 단점을 보완하기 위해 링크드 리스트라는 자료구조가 고안되었다. 배열은 연속적인 데이터이지만 링크드 리스트는 불연속적으로 존재하는 데이터를 서로 연결한 형태로 구성되어 있다.
+
+![](https://velog.velcdn.com/images/roberts/post/713323ab-1506-4213-a1da-9e7409d29f37/image.png)
+
+위의 그림을 보면 링크드 리스트는 각 요소들을 자신과 연결된 다음 요소에 대한 참조와 데이터로 구성되어 있다.
+링크드 리스트의 데이터 삭제는 삭제하고자 하는 요소의 이전요소가 삭제하고자 하는 요소의 다음요소를 참조하도록 변경하기만 하면 된다. 단 하나의 참조만 변경하면 되므로, 정말 간단하고 처리속도가 빠르다.
+
+![](https://velog.velcdn.com/images/roberts/post/d4584674-0314-4e18-b281-96de22bafda2/image.png)
+
+데이터를 추가할 때는 새로운 요소를 생성 후, 추가하고자 하는 위치의 이전 요소의 참조를 새로운 요소에 대한 참조로 변경해주고, 새로운 요소가 그 다음 요소를 참조하도록 변경하기만 하면 되므로, 처리속도가 빠르다.
+
+![](https://velog.velcdn.com/images/roberts/post/9f7921d7-d09c-4f09-b0d2-826e62b6c15c/image.png)
+
+링크드 리스트는 이동방향이 단방향이기 때문에 다음 요소에 대한 접근은 쉽지만 이전요소에 대한 접근은 어렵다. 이점을 보완한 것이 더블 링크드 리스트다. 더블 링크드 리스트는 단순히 링크드 리스트에 참조변수를 하나 더 추가하여 다음 요소에 대한 참조뿐 아니라 이전 요소에 대한 참조가 가능하도록 했다.
+
+더블 링크드 리스트는 링크드 리스트보다 각 요소에 대한 접근과 이동이 쉽기 때문에 링크드 리스트보다 많아 사용된다.
+
+![](https://velog.velcdn.com/images/roberts/post/ff8ddff7-6a96-44d3-84bf-27b700c27d0f/image.png)
+
+더블 링크드 리스트의 접근성을 보다 향상시킨 것이 더블 써큘러 링크드 리스트이다. 단순히, 더블 링크드 리스트의 첫번째 요소와 마지막 요소를 서로 연결시킨 것이다.
+
+실제로 LinkedList 클래스는 이름과 달리 링크드 리스트가 아닌 더블 링크드 리스트로 구현되어 있다. 이는 링크드 리스트의 단점인 낮은 접근성을 높이기 위한 것이다.
+
+|생성자 또는 메서드|설명|
+|------|---|
+|LinkedList()|LinkedList 객체를 생성|
+|LinkedList(Collection c)|주어진 컬렉션을 포함하는 LinkedList 객체를 생성|
+|boolean add(Object o)|지정된 객체(o)를 LinkedList의 끝에 추가. 저장에 성공하면 true, 실패하면 false|
+|void add(int index, Object element)|지정된 위치(index)에 객체(element)를 추가|
+|boolean addAll(Collection c)|주어진 컬렉션에 포함된 모든 요소를 LinkedList의 끝에 추가한다. 성공하면 true, 실패하면 false|
+|boolean addAll(int index, Collection c)|지정된 위치(index)에 주어진 컬렉션에 포함된 모든 요소를 추가. 성공하면 true, 실패하면 false|
+|void clear()|LinkedList의 모든 요소 삭제|
+|boolean contains(Object o)|지정된 객체가 LinkedList에 포함되어 있는지 알려줌|
+|boolean containsAll(Collection c)|지정된 컬렉션의 모든 요소가 포함되어 있는지 알려줌|
+|Object get(int index)|지정된 위치(index)의 객체를 반환|
+|int indexOf(Object o)|지정된 객체가 저장된 위치(앞에서 몇번째)를 반환|
+|boolean isEmpty()|LinkedList가 비어있는지 알려준다. 비어있으면 true|
+|Iterator iterator()|Iterator를 반환한다.|
+|int lastIndexOf(Object o)|지정된 객체의 위치(index)를 반환 (끝부터 역순으로 검색)|
+|ListIterator listIterator()|ListIterator를 반환한다.|
+|ListIterator listIterator(int index)|지정된 위치에서부터 시작하는 ListIterator를 반환|
+|Object remove(int index)|지정된 위치(index)의 객체를 LinkedList에서 제거|
+|boolean remove(Object o)|지정된 객체를 LinkedList에서 제거. 성공하면 true, 실패하면 false|
+|boolean removeAll(Collection c)|지정된 컬렉션의 요소와 일치하는 요소를 모두 삭제|
+|boolean retainAll(Collection c)|지정된 컬렉션의 모든 요소가 포함되어 있는지 확인|
+|Object set(int index, Object element)|지정된 위치(index)의 객체를 주어진 객체로 바꿈|
+|int size()|LinkedList에 저장된 객체의 수를 반환|
+|List subList(int fromIndex, int toIndex)|LinkedList의 일부를 List로 반환|
+|Object[] toArray()|LinkedList에 저장된 객체를 배열로 반환|
+|Object[] toArray(Object[] a)|LinkedList에 저장된 객체를 주어진 배열에 저장하여 반환|
+|Object element()|LinkedList의 첫 번째 요소를 반환|
+|boolean offer(Object o)|지정된 객체(o)를 LinkedList의 끝에 추가. 성고하면 true, 실패하면 false|
+|Object peek()|LinkedList의 첫 번째 요소를 반환|
+|Object poll()|LinkedList의 첫번째 요소를 반환. LinkedList에서는 제거된다.|
+|Object remove()|LinkedList의 첫번째 요소를 제거|
+|void addFirst(Object o)|LinkedList의 맨 앞에 객체(o)를 추가|
+|void addLast(Object o)|LinkedList의 맨 끝에 객체(o)를 추가|
+|Iterator descendingIterator()|역순으로 조회하기 위한 DescendingIterator를 반환|
+|Object getFirst()|LinkedList의 첫번째 요소를 반환|
+|Object getLast()|LinkedList의 마지막 요소를 반환|
+|boolean offerFirst(Object o)|LinkedList의 만 앞에 객체(o)를 추가. 성공하면 true|
+|boolean offerLast(Object o)|LinkedList의 맨 끝에 객체(o)를 추가. 성공하면 true|
+|Object peekFirst()|LinkedList의 첫번째 요소를 반환|
+|Object peekLast()|LinkedList의 마지막 요소를 반환|
+|Object pollFirst()|LinkedList의 첫번째 요소를 반환하면서 제거|
+|Object pollLast()|LinkedList의 마지막 요소를 반환하면서 제거|
+|Object pop()|removeFirst()와 동일|
+|void push(Object o)|addFirst()와 동일|
+|Object removeFirst()|LinkedList의 첫번째 요소를 제거|
+|Object removeLast()|LinkedList의 마지막 요소를 제거|
+|boolean removeFirstOccurence(Object o)|LinkedList에서 첫번재로 일치하는 객체를 제거|
+|boolean removeLastOccurence(Object o)|LinkedList에서 마지막으로 일치하는 객체를 제거|
+
+> 결론1. 순차적으로 추가/삭제하는 경우에는 ArrayList가 LinkedList보다 빠르다.
+결론2. 중간 데이터를 추가/삭제하는 경우에는 LinkedList가 ArrayList보다 빠르다.
+
+배열의 경우 만일 인덱스가 n인 원소의 값을 얻어 오고자 한다면 단순히 아래와 같은 수식을 계산하면 된다.
+
+> 인덱스가 n인 데이터의 주소 = 배열의 주소 + n * 데이터 타입의 크기
+
+하지만 LinkedList는 불연속적으로 위치한 각 요소들이 서로 연결된 것이라 처음부터 n번째 데이터까지 차례대로 따라가야만 원하는 값을 얻을 수 있다. 즉, 접근시간이 길어진다.
+
+|컬렉션|접근시간|추가/삭제|비고|
+|------|---|---|---|
+|ArrayList|빠르다|느리다|순차적인 추가삭제는 빠르다 <br /> 비효율적인 메모리 사용|
+|LinkedList|느리다|빠르다|데이터가 많을수록 접근성이 떨어진다.|
