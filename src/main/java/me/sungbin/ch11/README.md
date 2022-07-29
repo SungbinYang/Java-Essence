@@ -363,3 +363,11 @@ asList()는 배열을 List에 담아서 반환한다. 매개변수가 가변인�
 sp;iterator()은 여러 쓰레드가 처리할 수 있게 하나의 작업으로 나누는 Spliterator를 반환한다.
 
 stream()은 컬렉션을 스트림으로 변환한다.
+
+### Comparator와 Comparable
+Arrays.sort()는 Character 클래스의 Comparable의 구현에 의해 정렬된다. Comparator와 Comparable은 모두 인터페이스로 컬렉션을 정렬하는데 필요한 메서드를 정의하고 있으며 Comparable을 구현하고 있는 클래스들은 같은 타입의 인스턴스끼리 비교할 수 있는 클래스들을 기본적으로 오름차순으로 정렬한다.
+
+Comparable을 구현한 클래스들이 기본적으로 오름차순으로 정렬되어 있지만 내림차순으로 정렬한다던가 아니면 다른 기준으로 정렬하고 싶을 때 Comparator를 구현해서 정렬기준을 제공한다.
+
+> Comparable 기본 정렬기준을 구현하는데 사용.
+Comparator 기본 정렬기준 외에 다른 기준으로 정렬하고자 할 때 사용
