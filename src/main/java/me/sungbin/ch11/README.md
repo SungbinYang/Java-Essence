@@ -250,3 +250,28 @@ ArrayList나 Vector 같이 배열을 이용한 자료구조는 데이터를 읽�
 |------|---|---|---|
 |ArrayList|빠르다|느리다|순차적인 추가삭제는 빠르다 <br /> 비효율적인 메모리 사용|
 |LinkedList|느리다|빠르다|데이터가 많을수록 접근성이 떨어진다.|
+
+#### 스택과 큐의 활용
+
+> 스택의 활용  예 - 수식계산, 수식괄호검사, 워드프로세서의 undo/redo, 웹브라우저의 뒤로/앞으로
+큐의 활용 - 최근 사용문서, 앤쇄작업 대기목록, 버퍼
+
+#### PriorityQueue
+Queue 인터페이스 구현체중 하나로 저장한 순서에 관계없이 우선순위가 높은 것부터 꺼내게 된다는 특징이 있다. 그리고 null은 저장할 수 없다. null을 저장하게 된다면 NullPointerException이 발생하게 된다.
+
+PriorityQueue는 저장공간으로 배열을 사용하며 각 요소를 힙이라는 자료구조의 형태로 저장한다.
+
+#### Deque
+Queue의 변형으로, 한 쪽 끝으로만 추가/삭제할 수 있는 Queue와 달리 Deque는 양쪽 끝에 추가/삭제가 가능하다. 구현체로는 ArrayDeque와 LinkedList가 있다.
+
+![](https://velog.velcdn.com/images/roberts/post/2dc15877-bf74-40e3-9630-2b7a2fc9359f/image.png)
+
+덱은 스택과 큐를 하나로 합쳐놓은 것과 같으며 스택으로 사용할 수 있고 큐로 사용할 수 있다.
+
+|Deque|Queue|Stack|
+|------|---|---|
+|offerLast()|offer()|push()|
+|pollLast()|-|pop()|
+|pollFirst()|poll()|-|
+|peekFirst()|peek()|-|
+|peekLast()|-|peek()|
