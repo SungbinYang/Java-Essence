@@ -275,3 +275,61 @@ Queue의 변형으로, 한 쪽 끝으로만 추가/삭제할 수 있는 Queue와
 |pollFirst()|poll()|-|
 |peekFirst()|peek()|-|
 |peekLast()|-|peek()|
+
+### Iterator, ListIterator, Enumeration
+Iterator, ListIterator, Enumeration은 모두 컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스이다. Enumeration은 Iterator의 구번전이고, ListIterator은 Iterator의 기능을 향상시킨것이다.
+
+#### Iterator
+컬렉션 프레임워크에서는 컬렉션에 저장된 요소들을 읽어오는 방법을 표준화하였다. 컬렉션에 저장된 각 요소에 접근하는 기능을 가진 Iterator 인터페이스를 정의하였고 Collection 인터페이스에서는 Iterator를 반환하는 iterator()를 정의하고 있다.
+
+``` java
+public interface Iterator {
+	boolean hasNext();
+    Object next();
+    void remove();
+}
+
+public interface Collection {
+	...
+    public Iterator iterator();
+    ...
+}
+```
+
+iterator()은 Collection 인터페이스에 정의된 메서드이므로 Collection 인터페이스의 하위 타입인 List와 Set에도 포함되어 있다. 컬렉션 클래스에 대해 iterator()를 호출하여 Iterator르 얻은 다음 반복문을 이용하여 컬렉션 요소를 읽어 올 수 있다.
+
+|메서드|설명|
+|------|---|
+|boolean hasNext()|읽어 올 요소가 남아있는지 확인한다. 있으면 true, 없으면 false를 반환한다.|
+|Object next()|다음 요소를 읽어온다. next()를 호출하기 전에 hasNext()를 호출해서 읽어 올 요소가 있는지 확인하는 것이 안전하다.|
+|void remove()|next()로 읽어 온 요소를 삭제한다. next()를 호출한 다음에 remove()를 호출해야한다. (선택)|
+
+Iterator를 이용해서 컬렉션의 요소를 읽어오는 방법을 표준화했기 때문에 코드의 재사용성을 높이는 것이 가능하다. 이처럼 공통 인터페이스를 정의해서 표준을 정의하고 구현하여 표준을 따르도록 함으로써 코드의 일관성을 유지하여 재사용성을 극대화하는 것이 객체지향의 목적이다.
+
+Map 인터페이스를 구현한 컬렉션 클래스는 키와 값을 쌍으로 저장하고 있기 때문에 iterator()를 직접 호출할 수 없고, 그 대신 keySet()이나 entrySet()과 같은 메서드를 통해서 키와 값을 각각 따로 Set의 형태로 받아온 후 다시 iterator()를 호출해야한다.
+
+#### ListIterator와 Enumeration
+
+> Enumeration: Iterator의 구버전
+ListIterator: Iterator에 양방향 조회기능 추가 (List를 구현한 경우에만 사용가능)
+
+아래의 표는 Enumeration 메서드이다. 알아만 두자.
+
+|메서드|설명|
+|------|---|
+|boolean hasMoreElements()|읽어 올 요소가 남아있는지 확인한다. 있으면 true, 없으면, false를 반환한다. Iterator의 hasNext()와 같다.|
+|Object nextElement()|다음 요소를 읽어온다. nextElement()를 호출하기 전에 hasMoreElements()를 호출해서 읽어올 요소가 남아있는지 확인하는 것이 안전하다. Iterator의 next()와 같다.|
+
+아래의 표는 ListIterator 메서드이다.
+
+|메서드|설명|
+|------|---|
+|void add(Object o)|컬렉션에 새로운 객체(o)를 추가한다. (선택)|
+|boolean hasNext()|읽어 올 다음 요소가 남아있는지 확인한다. 있으면 true, 없으면 false를 반환한다.|
+|boolean hasPrevious()|읽어 올 이전 요소가 남아있는지 확인한다. 있으면 true, 없으면 false를 반환|
+|Object next()|다음 요소를 읽어 온다. next()를 호출하기 전에 hasNext()를 호출해서 <br /> 읽어 올 요소가 있는지 확인하는 것이 안전하다.|
+|Object previous()|이전 요소를 읽어온다. previous()를 호출하기 전에 hasPrevious()를 호출해서 <br /> 읽어 올 요소가 있는지 확인하는 것이 안전하다.|
+|int nextIndex()|다음 요소의 index를 반환한다.|
+|int previousIndex()|이전 요소의 index를 반환한다.|
+|void remove()|next() 또는 previous()로 읽어 온 요소를 삭제한다. 반드시 next()나 <br /> previous()를 먼저 호출한 다음에 이 메서드를 호출해야 하는 것은 아니다.|
+|void set(Object o)|next() 또는 previous()로 읽어 온 요소를 지정된 객체(o)로 변경한다. <br /> 반드시 next()나 previous()를 먼저 호출한 다음에 이 메서드를 호출해야한다.|
