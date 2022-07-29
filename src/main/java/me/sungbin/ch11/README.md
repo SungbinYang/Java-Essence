@@ -333,3 +333,33 @@ ListIterator: Iterator에 양방향 조회기능 추가 (List를 구현한 경�
 |int previousIndex()|이전 요소의 index를 반환한다.|
 |void remove()|next() 또는 previous()로 읽어 온 요소를 삭제한다. 반드시 next()나 <br /> previous()를 먼저 호출한 다음에 이 메서드를 호출해야 하는 것은 아니다.|
 |void set(Object o)|next() 또는 previous()로 읽어 온 요소를 지정된 객체(o)로 변경한다. <br /> 반드시 next()나 previous()를 먼저 호출한 다음에 이 메서드를 호출해야한다.|
+
+### Arrays
+Arrays 클래스에서는 배열을 다루는데 유용한 메서드가 정의되어 있다.
+
+#### 배열의 복사 - copyOf(), copyOfRange()
+copyOf()는 배열의 전체를, copyOfRange()는 배열의 일부를 복사해서 새로운 배열을 만들어 반환한다. copyOfRange()에 지정된 범위의 끝은 포함되지 않는다.
+
+#### 배열 채우기 - fill(), setAll()
+fill()은 배열의 모든 요소를 지정된 값으로 채운다. setAll()은 배열을 채우는데 사용할 함수형 인터페이스를 매개변수로 받는다. 매개변수 지정은 함수형 인터페이스를 대입한 변수를 넣거나 람다식을 구현하면 좋다.
+
+#### 배열의 정렬과 검색 - sort(), binarySearch()
+sort()는 배열을 정렬할 때, 그리고 배열에 저장된 요소를 검색할 때는 binarySearch()를 사용한다. binarySearch()는 배열에서 지정된 값이 저장된 위치를 찾아서 반환하는데 반드시 배열이 정렬된 상태여야 올바른 결과가 나온다.
+
+#### 문자열의 비교와 출력 - equals(), toString()
+toString()은 배열의 모든 요소를 문자열로 출력한다. toString()은 일차원 배열에서만 사용이 가능하고 다차원 배열 출력은 deepToString()을 사용해야 한다.
+
+equals()는 두 배열에 저장된 모든 요소를 비교해서 같으면 true, 다르면 false를 반환한다. equals()도 일차원 배열에서만 사용이 가능하고 다차원 배열에서는 deepEquals()를 사용해야 한다.
+
+#### 배열을 List로 변환 - asList(Object... a)
+asList()는 배열을 List에 담아서 반환한다. 매개변수가 가변인수라 배열 생성없이 저장할 요소들만 나열하는것도 가능하다.
+
+> ⚠️ 주의
+한가지 주의할 점은 asList()가 반환한 List의 크기를 변경할 수 없다. 즉, 추가 또는 삭제가 불가능하다.
+
+#### parallelXXX(), spliterator(), stream()
+이 외에도 'parrallel'로 시작하는 이름의 메서드가 있는데 이 메서드들은 보다 빠른 결과를 얻기 위해 여러 쓰레드가 작업을 나누어 처리하도록 한다.
+
+sp;iterator()은 여러 쓰레드가 처리할 수 있게 하나의 작업으로 나누는 Spliterator를 반환한다.
+
+stream()은 컬렉션을 스트림으로 변환한다.
