@@ -371,3 +371,37 @@ Comparable을 구현한 클래스들이 기본적으로 오름차순으로 정�
 
 > Comparable 기본 정렬기준을 구현하는데 사용.
 Comparator 기본 정렬기준 외에 다른 기준으로 정렬하고자 할 때 사용
+
+### HashSet
+HashSet은 Set 인터페이스를 구현한 가장 대표적인 컬렉션이다. 특징으로는 HashSet은 중복된 요소를 저장하지 않는다. HashSet은 새로운 요소를 추가할때는 add()나 addAll()를 사용하는데 만약 중복된 요소를 추가할려고 하면 false를 반환한다. 이 특징을 통해 HashSet은 컬렉션 내의 중복요소를 쉽게 제거할 수 있다.
+
+ArrayList와 같이 List인터페이스를 구현한 컬렉션과 달리 HashSet은 저장순서를 유지하지 않으므로 저장순서를 유지해야한다면 LinkedHashSet을 사용한다.
+
+|생성자 또는 메서드|설명|
+|------|---|
+|HashSet()|HashSet 객체를 생성한다.|
+|HashSet(Collection c)|주어진 컬렉션을 포함하는 HashSet 객체를 생성한다.|
+|HashSet(int initialCapacity)|주어진 값을 초기용량으로 하는 HashSet 객체를 생성한다.|
+|HashSet(int initialCapacity, float loadFactor)|초기 용량과 load factor를 지정하는 생성자.|
+|boolean add(Object o)|새로운 객체를 저장한다.|
+|boolean addAll(Collection c)|주어진 컬렉션에 저장된 모든 객체들을 추가한다. (합집합)|
+|void clear()|저장된 모든 객체를 삭제한다.|
+|Object clone()|HashSet을 복제해서 반환한다. (얕은 복사)|
+|boolean contains(Object o)|지정된 객체를 포함하고 있는지 알려준다.|
+|boolean containsAll(Collection c)|주어진 컬렉션에 저장된 모든 객체들을 포함하고 있는지 알려준다.|
+|boolean isEmpty()|HashSet이 비어있는지 알려준다.|
+|Iterator iterator()|Iterator를 반환한다.|
+|boolean remove(Object o)|지정된 객체를 HashSet에서 삭제한다. <br />(성공하면 true, 실패하면 false)|
+|boolean removeAll(Collection c)|주어진 컬렉션에 저장된 모든 객체와 동일한 것들을 HashSet에서 모두 삭제한다. (차집합)|
+|boolean retainAll(Collection c)|주어진 컬레션에 저장된 객체와 동일한 것만 남기고 삭제한다. (교집합)|
+|int size()|저장된 객체의 개수를 반환한다.|
+|Object[] toArray()|저장된 객체들을 객체배열의 형태로 반환한다.|
+|Object[] toArray(Objecr[] a)|저장된 객체들을 주어진 객체배열(a)에 담는다.|
+
+여기서 add 메서드는 메서드 안에 자체적으로 equals()와 hashCode()를 이용하여 중복객체인지 확인을 한다. 이 기준을 변경하려면 equals()와 hashCode()를 적절히 오버라이딩하면 된다.
+
+여기서 hashCode()를 오버라이딩하려면 다음 3가지 조건을 만족시켜야 한다.
+
+> 1. 실행중인 애플리케이션 내의 동일한 객체에 대해서 여러번 hashCode()를 호출해도 동일한 int값을 반환해야한다. 하지만 실행시마다 동일한 int값을 반환할 필요는 없다.
+2. equlas() 메서드를 이용한 비교에 의해서 true를 얻은 두 객체에 대해 각각 hashCode()를 호출해서 얻은 결과는 반드시 같아야 한다.
+3. equals() 메서드를 호출했을 때 false를 반환하는 두 객체는 hashCode() 호출에 대해 같은 int값을 반환하는 경우가 있어도 괜찮지만 해싱을 사용하는 컬렉션의 성능을 향상시키기 위해서는 다른 int값을 반환하는 것이 좋다.
