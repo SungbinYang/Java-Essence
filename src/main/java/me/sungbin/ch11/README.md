@@ -462,3 +462,62 @@ TreeSet은 이진 검색 트리라는 자료구조의 형태로 데이터를 저
 |SortedSet tailSet(Object fromElement)|지정된 객체보다 큰 값의 객체들을 반환한다.|
 |Object[] toArray()|저장된 객체를 객체배열로 반환한다.|
 |Object[] toArray(Object[] a)|저장된 객체를 주어진 객체배열에 저장하여 반환한다.|
+
+### HashMap과 Hashtable
+Hashtable과 HashMap의 관계는 Vector와 ArrayList의 관계와 같다. 즉, Hashtable보다는 HashMap을 사용할 것을 권한다.
+
+HashMap은 Map을 구현했으므로 키와 값을 묶어서 하나의 데이터로 저장한다는 특징을 갖는다. 그리고 해싱을 사용해서 많은 양의 데이터를 검색하는데 있어서 뛰어난 성능을 보인다. 아래의 코드는 HashMap의 구현코드이다.
+
+``` java
+public class HashMap extends AbstractMap implements Map, Cloneable, Serializable {
+	transient Entry[] table;
+    
+    static class Entry implements Map.Entry {
+    	final Object key;
+        Object value;
+    }
+}
+```
+
+HashMap은 키와 값을 각각 Object타입으로 저장한다. 즉, 키와 값의 타입을 Object형태로 저장할 수 있어서 어떤 객체든 저장할 수 있지만 주로 String을 대문자 또는 소문자형태로 통일하여 사용한다.
+
+> 키(key) : 컬렉션 내의 키중에서 유일해야 한다.
+값(value) : 키와 달리 데이터의 중복을 허용한다.
+
+키는 저장된 값을 찾는데 사용되는 것이기 때문에 컬렉션 내에서 유일해야한다.
+
+|생성자 / 메서드|설명|
+|------|---|
+|HashMap()|HashMap 객체를 생성|
+|HashMap(int initialCapacity)|지정된 값을 초기용량으로 하는 HashMap 객체를 생성|
+|HashMap(int initialCapacity, float loadFactor)|지정된 초기용량과 load factor의 HashMap 객체를 생성|
+|HashMap(Map m)|지정된 Map의 모든 요소를 포함하는 HashMap 생성|
+|void clear()|HashMap에 저장된 모든 객체를 제거|
+|Object clone()|현재 HashMap을 복제해서 반환|
+|boolean containsKey(Object key)|HashMap에 지정된 키가 포함되어 있는지 알려준다. <br /> (포함되어 있으면 true)|
+|boolean containsValue(Object value)|HashMap에 지정된 값이 포함되어 있는지 알려준다. <br /> (포함되어 있으면 true)|
+|Set entrySet()|HashMap에 저장된 키와 값을 엔트리(키와 값의 결합)의 형태로 Set에 저장해서 반환|
+|Object get(Object key)|지정된 키의 값(객체)을 반환 못찾으면 null|
+|Object getOrDefault(Object key, Object defaultValue)|지정된 키의 값(객체)를 반환한다. 키를 못찾으면 기본값(defaultValue)로 지정된 객체를 반환한다.|
+|boolean isEmpty()|HashMap이 비어있는지 알려준다.|
+|Set keySet()|HashMap에 저장된 모든 키가 저장된 Set을 반환|
+|Object put(Object key, Object value)|지정된 키와 값을 HashMap에 저장|
+|void putAll(Map m)|Map에 저장된 모든 요소를 HashMap에 저장|
+|Object remove(Object key)|HashMap에서 지정된 키로 저장된 값(객체)를 제거|
+|Object replace(Object key, Object oldValue, Object newValue)|지정된 키와 값을 지정된 객체(value)로 대체|
+|boolean replace(Object key, Object oldValue, Object newValue)|지정된 키와 객체(oldValue)가 모두 일치하는 경우에만 새로운 객체(newValue)로 대체|
+|int size()|HashMap에 저장된 요소의 개수를 반환|
+|Collection values()|HashMap에 저장된 모든 값을 컬렉션의 형태로 반환|
+
+#### 해싱과 해시함수
+해싱이란 해시함수를 이용해서 데이터를 해시테이블에 저장하고 검색하는 기법을 말한다. 이 기법을 사용하면 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. 해싱을 구현한 컬렉션 클래스로는 HashSet, HashMap, Hashtable등이 있다. 여기서 Hashtable은 HashMap으로 대체되었으므로 왠만하면 HashMap을 사용하는 것이 좋다.
+
+해싱에서 사용하는 자료구조는 아래 그림과 같이 배열과 링크드리스트 조합으로 되어 있다.
+
+![](https://velog.velcdn.com/images/roberts/post/e4f1c07e-d829-41d0-a3db-59371b25df13/image.png)
+
+저장할 데이터의 키를 해시함수에 넣으면 배열의 한 요소를 얻게 되고, 다시 그곳에 연결되어 있는 링크드 리스트에 저장되게 된다.
+
+> 1. 검색하고자 하는 값의 키로 해시함수를 호출한다.
+2. 해시함수의 계산결과로 해당 값이 저장되어 있는 링크드 리스트를 찾는다.
+3. 링크드 리스트에서 검색한 키와 일치하는 데이터를 찾는다.
