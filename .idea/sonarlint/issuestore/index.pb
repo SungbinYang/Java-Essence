@@ -604,3 +604,15 @@ _
 /src/main/java/me/sungbin/ch11/ComparatorEx.java,d/9/d928b8cb77a11285c79c212304a7033ec9f9e26a
 ^
 .src/main/java/me/sungbin/ch11/IteratorEx1.java,a/0/a0b002def3a2b08e537e347fd524ddc88dc0b79d
+_
+/src/main/java/me/sungbin/ch11/HashSetLotto.java,1/8/188f3fc3cdc3d5aa884c31586e2f4397029e620b
+X
+(src/main/java/me/sungbin/ch11/Bingo.java,6/9/6927bea601dd2a91e4c695ae16e0d9276a68afe4
+]
+-src/main/java/me/sungbin/ch11/HashSetEx3.java,4/2/4212d2052f86bc4065b531968ddbe2ccefc1955b
+]
+-src/main/java/me/sungbin/ch11/HashSetEx4.java,9/0/900d6db1f45574f42962ccebde5da1615c4a4b1e
+]
+-src/main/java/me/sungbin/ch11/HashSetEx5.java,9/0/90a4253adc1c7edf71e9857fd27654adb94e8904
+]
+-src/main/java/me/sungbin/ch11/HashSetEx1.java,2/2/22c5cffffbd632bb7e3cf4d7a5d76a5c4f992b0b
