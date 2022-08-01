@@ -571,3 +571,28 @@ TreeMap은 이진검색트리의 형태로 키와 값의 쌍으로 이루어진 
 |SortedMap tailMap(Object fromKey)|지정된 키부터 마지막 요소의 범위에 속한 요소가 담긴 SortedMap을 반환|
 |NavigableMap tailMap(Object fromKey, boolean inclusive)|지정된 키로부터 마지막 요소의 범위에 속한 요소가 담긴 NavigableMap을 반환. inclusive가 true면 fromKey 포함|
 |Collection values()|TreeMap에 저장된 모든 값을 컬렉션의 형태로 반환|
+
+### Properties
+Properties는 HashMap의 구버전인 Hashtable을 상속받아 구현한 것으로 (String, String)의 형태로 저장하는 보다 단순화된 컬렉션 클래스이다.
+
+주로 애플리케이션의 환경설정과 관련된 속성을 저장하는데 사용되며 데이터를 파일로부터 읽고 쓰는 편리한 기능을 제공한다.
+
+|메서드|설명|
+|------|---|
+|Properties()|Properties 객체를 생성한다.|
+|Properties(Properties defaults)|지정된 Properties에 저장된 목록을 가진 Properties 객체를 생성한다.|
+|String getProperty(String key)|지정된 키의 값을 반환한다.|
+|String getProperty(String key, String defaultValue)|지정된 키의 값을 반환한다. 키를 못 찾으면 defaultValue를 반환한다.|
+|void list(PrintStream out)|지정된 PrintStream에 저장된 목록을 출력한다.|
+|void list(PrintWriter out)|지정된 PrintWriter에 저장된 목록을 출력한다.|
+|void load(InputStream inStream)|지정된 InputStream으로부터 목록을 읽어서 저장한다.|
+|void load(Reader reader)|지정된 Reader으로부터 목록을 읽어서 저장한다.|
+|void loadFromXML(InputStream in)|지정된 InputStream으로부터 XML문서를 읽어서, XML문서에 저장된 목록을 읽어다 담는다. (load & store)|
+|Enumeration propertyNames()|목록의 모든 키가 담긴 Enumeration을 반환한다.|
+|void save(OutputStream out, String header)|deprecated되었으므로 store()를 사용한다.|
+|Object setProperty(String key, String value)|지정된 키와 값을 저장한다. 이미 존재하는 키면 새로운 값으로 바뀐다.|
+|void store(OutputStream out, String comments)|저장된 목록을 지정된 OutputStream에 출력(저장)한다. comments는 목록에 대한 설명(주석)으로 저장된다.|
+|void store(Writer writer, String comments)|저장된 목록을 지정된 Writer에 출력(저장)한다. comments는 목록에 대한 설명(주석)으로 저장된다.|
+|void storeToXML(OutputStream os, String comment)|저장된 목록을 지정된 출력스트림에 XML문서로 출력(저장)한다. comment는 목록에 대한 설명(주석)으로 저장된다.|
+|void storeToXML(OutputStream os, String comment, String encoding)|저장된 목록을 지정된 출력 스트림에 해당 인코딩의 XML문서로 출력(저장)한다. comment는 목록에 대한 설명(주석)으로 저장된다.|
+|Set stringPropertyNames()|Properties에 저장되어 있는 모든 키를 Set에 담아서 반환한다.|
