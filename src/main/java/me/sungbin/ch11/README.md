@@ -596,3 +596,62 @@ Properties는 HashMap의 구버전인 Hashtable을 상속받아 구현한 것으
 |void storeToXML(OutputStream os, String comment)|저장된 목록을 지정된 출력스트림에 XML문서로 출력(저장)한다. comment는 목록에 대한 설명(주석)으로 저장된다.|
 |void storeToXML(OutputStream os, String comment, String encoding)|저장된 목록을 지정된 출력 스트림에 해당 인코딩의 XML문서로 출력(저장)한다. comment는 목록에 대한 설명(주석)으로 저장된다.|
 |Set stringPropertyNames()|Properties에 저장되어 있는 모든 키를 Set에 담아서 반환한다.|
+
+### Collections
+Collections는 컬렉션과 관련된 메서드를 제공한다. fill(), copy(), sort(), binarySearch()등의 메서드는 Arrays 클래스와 동일한 기능을 한다.
+
+#### 컬렉션의 동기화
+멀티 쓰레드 프로그래밍에서는 하나의 객체를 여러 쓰레드가 동시에 접근할 수 있기 때문에 데이터의 일관성을 유지하기 위해서는 공유되는 객체에 동기화가 필요하다.
+
+이전 버전의 Vector나 Hashtable같은 클래스에는 자체적으로 동기화 기능이 있어서 좋을 것 같지만 멀티쓰레드 프로그래밍이 아닌 경우에는 불필요한 기능이 되어 성능을 떨어트린다.
+
+그래서 새로 추가된 ArrayList와 HashMap과 같은 컬렉션은 동기화를 자체적으로 처리하지 않고 칠요한 경우에만 Collections 클래스의 동기화 메서드를 이용해서 동기화처리가 가능하도록 하였다. 동기화 메서드에는 아래와 같다.
+
+``` java
+static Collection synchronizedCollection(Collection c)
+static List synchronizedList(List list)
+static Set synchronizedSet(Set s)
+static Map synchronizedMap(Map m)
+static SortedSet synchronizedSortedSet(SortedSet s)
+static SortedMap synchronizedSortedMap(SortedMap m)
+```
+
+#### 변경불가 컬렉션 만들기
+컬렉션에 저장돤 데이터를 보호하기 위해서 컬렉션을 변경할 수 없게, 즉, 읽기전용으로 만들어야할 때가 있다. 주로 멀티쓰레드프로그래밍에서 여러 쓰레드가 하나의 컬렉션을 공유하다보면 데이터 손상이 될 수 있는데, 이 때 아래의 메서드를 활용하면 된다.
+
+``` java
+static Collection unmodifiableCollection(Collection c)
+static List unmodifiableList(List list)
+static Set unmodifiableSet(Set s)
+static Map unmodifiableMap(Map m)
+static NavigableSet unmodifiableNavigableSet(NavigableSet s)
+static SortedSet unmodifiableSortedSet(SortedSet s)
+static NavigableMap unmodifiableNavigableMap(NavigableMap m)
+static SortedMap unmodifiableSortedMap(SortedMap m)
+```
+
+#### 싱글톤 컬렉션 만들기
+싱글톤 컬렉션을 만들고 싶을 때 아래의 메서드를 활용하면 된다.
+
+``` java
+static List singletonList(Object o)
+static Set singleton(Object o)
+static Map singletonMap(Object key, Object value)
+```
+
+#### 한 종류의 객체만 저장하는 컬렉션 만들기
+컬렉션에 모든 종류의 객체를 저장할 수 있다는 것은 장점이지만 단점이기도 하다. 대부분의 경우 한 종류의 객체를 저장하며, 지정된 종류의 객체만 저장할 수 있도록 제한하고 싶으면 아래의 메서드들을 활용하면 된다.
+
+``` java
+static Collection checkedCollection(Collection c, Class type)
+static List checkedList(List list, Class type)
+static Set checkedSet(Set s, Class type)
+static Map checkedMap(Map m, Class keyType, Class valueType)
+static Queue checkedQueue(Queue queue, Class type)
+static NavigableSet checkedNavigableSet(NavigableSet s, Class type)
+static SortedSet checkedSortedSet(SortedSet s, Class type)
+static NavigableMap checkedNavigableMap(NavigableMap m, Class keyType, Class valueType)
+static SortedMap checkedSortedMap(SortedMap m, Class keyType, Class valueType)
+```
+
+하지만 제너릭을 사용하면 타입제한을 더 쉽게 할 수 있기 때문에 잘 사용하지 않는다.
